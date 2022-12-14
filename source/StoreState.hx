@@ -89,9 +89,9 @@ class StoreState extends FlxState
             switch(item[select])
             {
                 case "X2":
-                    if (FlxG.save.data.coin > 200){
+                    if (FlxG.save.data.coin < 200){
                         trace('not have much money we want');
-                    }else if (FlxG.save.data.coin < 200){
+                    }else if (FlxG.save.data.coin > 200){
                         FlxG.save.data.coin -= 200;
                         FlxG.save.data.x2++;
                     }else if (FlxG.save.data.x2 == 1){
