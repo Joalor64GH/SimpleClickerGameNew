@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="sprite.png">
+	<!-- Created with Adobe Animate version 20.0.2.22168 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="normal0000" x="0" y="0" width="161" height="161"/>
+	<SubTexture name="press0000" x="161" y="0" width="161" height="161"/>
+	<SubTexture name="press0001" x="161" y="0" width="161" height="161"/>
+	<SubTexture name="press0002" x="322" y="0" width="161" height="161"/>
+	<SubTexture name="press0003" x="322" y="0" width="161" height="161"/>
+	<SubTexture name="press0004" x="0" y="161" width="161" height="161"/>
+	<SubTexture name="press0005" x="0" y="161" width="161" height="161"/>
+	<SubTexture name="press0006" x="161" y="161" width="161" height="161"/>
+	<SubTexture name="press0007" x="161" y="161" width="161" height="161"/>
+	<SubTexture name="press0008" x="0" y="0" width="161" height="161"/>
+</TextureAtlas>
