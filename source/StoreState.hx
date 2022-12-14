@@ -100,7 +100,7 @@ class StoreState extends FlxState
                     }
 
                 case "Auto Tap":
-
+                    // unfinsished
 
                 case "Back":
                     FlxG.save.flush();
