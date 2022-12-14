@@ -55,7 +55,7 @@ class PlayState extends FlxState
             FlxG.save.flush();
         }
 
-        if (press)
+        if (press || autoTap())
         {
             sprite.animation.play('tap');
 
@@ -63,7 +63,7 @@ class PlayState extends FlxState
                 FlxG.save.data.coin += 2;
             else
                 FlxG.save.data.coin++;
-            
+
             FlxG.save.flush();
         }
 
@@ -75,7 +75,7 @@ class PlayState extends FlxState
                 FlxG.save.data.coin += 2;
             else
                 FlxG.save.data.coin++;
-            
+
             FlxG.save.flush();
         }
 
@@ -84,8 +84,9 @@ class PlayState extends FlxState
         }  
     }
 
-    function autoTap()
+    inline function autoTap():Bool
     {
         //loop forever
+        return true;
     }
 }

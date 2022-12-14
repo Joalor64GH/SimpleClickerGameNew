@@ -14,13 +14,13 @@ class SystemData
         return fileAssets;
     }
 
-    public static function coin() 
+    inline public static function coin()
     {
         if (FlxG.save.data.coin == null)
             FlxG.save.data.coin = 0;
     }
 
-    static public function saveData()
+    inline static public function saveData()
     {
         if (FlxG.save.data.x2 == null)
             FlxG.save.data.x2 = 0; 
@@ -31,7 +31,7 @@ class SystemData
         limitNumber();
     }
 
-    static public function limitNumber()
+    inline static public function limitNumber()
     {
         if (FlxG.save.data.x2 == 2)
         {
