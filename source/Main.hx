@@ -6,8 +6,8 @@ import openfl.display.Sprite;
 
 class Main extends Sprite
 {
-	var gameWidth:Int = 1280; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
-	var gameHeight:Int = 720; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
+	var gameWidth:Int = 800; // Width of the game in pixels (might be less / more in actual pixels depending on your zoom).
+	var gameHeight:Int = 600; // Height of the game in pixels (might be less / more in actual pixels depending on your zoom).
 	var zoom:Float = -1; // If -1, zoom is automatically calculated to fit the window dimensions. (Removed from Flixel 5.0.0)
 	var framerate:Int = 60; // How many frames per second the game should run at.
 	var skipSplash:Bool = false; // Whether to skip the flixel splash screen that appears in release mode.
@@ -18,7 +18,7 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
-		addChild(new FlxGame(0, 0, PlayState));
-		addChild(new FPS(10, 10, 0xFFFFFF));
+		addChild(new FlxGame(gameWidth, gameHeight, PlayState, zoom, framerate, framerate, skipSplash, startFullscreen));
+		addChild(new FPS(10, 3, 0xFFFFFF));
 	}
 }

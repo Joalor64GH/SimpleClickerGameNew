@@ -9,6 +9,7 @@ import flixel.tweens.FlxEase;
 class PlayState extends FlxState
 {
     var sprite:Sprite_Game;
+    var sprite_tween:FlxTween;
     // var coin:Int = 0;
     var coinTxt:FlxText;
 
@@ -16,14 +17,17 @@ class PlayState extends FlxState
     {
         super.create();
 
-        // var text = new FlxText(0, 0, 0, "Simple Clicker Game", 64);
-        // text.screenCenter(X);
-        // add(text);
+        SystemData.coin(); //when first playing, number of coin are null
+        SystemData.saveData();
 
-        coinTxt = new FlxText(0, 0, 0, "Coin: " + FlxG.save.data.coin, 16);
+        var text = new FlxText(0, 0, 0, "Simple Clicker Game", 32);
+        text.screenCenter(X);
+        add(text);
+
+        coinTxt = new FlxText(5, FlxG.height - 18, 0, "Coin: " + FlxG.save.data.coin, 16);
         add(coinTxt);
 
-        sprite = new Sprite_Game(0, 0);
+        sprite = new Sprite_Game(0, 0, "button");
         sprite.screenCenter();
         add(sprite);
     }
@@ -44,16 +48,44 @@ class PlayState extends FlxState
         //     FlxG.switchState(new OptionsState());
         // }
 
+        if (store)
+        {
+            FlxG.switchState(new StoreState());
+
+            FlxG.save.flush();
+        }
+
         if (press)
         {
-            FlxG.save.data.coin++;
+            sprite.animation.play('tap');
+
+            if (FlxG.save.data.x2 == 1)
+                FlxG.save.data.coin += 2;
+            else
+                FlxG.save.data.coin++;
+            
             FlxG.save.flush();
         }
 
         if (press_alt)
         {
-            FlxG.save.data.coin++;
+            sprite.animation.play('tap');
+
+            if (FlxG.save.data.x2 == 1)
+                FlxG.save.data.coin += 2;
+            else
+                FlxG.save.data.coin++;
+            
             FlxG.save.flush();
         }
+
+        if (FlxG.save.data.autoTap == 1){
+            autoTap();
+        }  
+    }
+
+    function autoTap()
+    {
+        //loop forever
     }
 }

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="shop.png">
+	<!-- Created with Adobe Animate version 20.0.2.22168 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="shop_human0000" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0001" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0002" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0003" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0004" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0005" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0006" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0007" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0008" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0009" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0010" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0011" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0012" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0013" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0014" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0015" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0016" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0017" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0018" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0019" x="407" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0020" x="407" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0021" x="0" y="445" width="407" height="445"/>
+	<SubTexture name="shop_human0022" x="0" y="445" width="407" height="445"/>
+	<SubTexture name="shop_human0023" x="407" y="445" width="407" height="445"/>
+	<SubTexture name="shop_human0024" x="407" y="445" width="407" height="445"/>
+	<SubTexture name="shop_human0025" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0026" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0027" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0028" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0029" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0030" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0031" x="0" y="0" width="407" height="445"/>
+</TextureAtlas>

@@ -4,13 +4,26 @@ import flixel.FlxSprite;
 
 class Sprite_Game extends FlxSprite
 {
-    public function new(x:Float, y:Float):Void
+    public var sprite:String = 'button';
+
+    public function new(x:Float, y:Float, ?sprite:String = "button"):Void
     {
         super(x, y);
 
-        frames = Paths.getSparrowAtlas('sprite');
-        animation.addByPrefix('idle', 'normal', 24, false);
-        animation.addByPrefix('tap', 'press', 24, false);
+        switch(sprite)
+        {
+            case "button":
+                frames = Paths.getSparrowAtlas('sprite');
+                animation.addByPrefix('idle', 'normal', 1, false);
+                animation.addByPrefix('tap', 'press', 6, false);
+
+            case "shop":
+                frames = Paths.getSparrowAtlas('shop');
+                animation.addByPrefix('idle', 'shop_human', 16, true);
+
+                antialiasing = true;
+
+        }
     }
 
     override public function update(elapsed:Float):Void
