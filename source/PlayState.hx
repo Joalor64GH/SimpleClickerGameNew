@@ -48,6 +48,7 @@ class PlayState extends FlxState
         var press = FlxG.keys.justPressed.ENTER;
         var press_alt = FlxG.keys.justPressed.SPACE;
         var store = FlxG.keys.justPressed.S;
+        var reset = FlxG.keys.justPressed.R;
 
         // if (options)
         // {
@@ -61,7 +62,7 @@ class PlayState extends FlxState
             FlxG.save.flush();
         }
 
-        if (press || autoTap())
+        if (press || press_alt || FlxG.mouse.overlaps(sprite) && FlxG.mouse.justPressed || autoTap() && FlxG.elapsed % 2 == 0)
         {
             sprite.animation.play('tap');
 
@@ -73,27 +74,26 @@ class PlayState extends FlxState
             FlxG.save.flush();
         }
 
-        if (press_alt)
-        {
-            sprite.animation.play('tap');
+        if (reset){
+            FlxG.save.data.coin = 0;
+            FlxG.save.data.autoTap = 0;
+            FlxG.save.data.x2 = 0;
 
-            if (FlxG.save.data.x2 == 1)
-                FlxG.save.data.coin += 2;
-            else
-                FlxG.save.data.coin++;
-
-            FlxG.save.flush();
+            FlxG.sound.play(Paths.sound('resetSound'), 1);
         }
 
         if (FlxG.save.data.autoTap == 1){
-            autoTap();
-        }  
+            autoTap(true);
+        }
+        else {
+            autoTap(false);
+        }
     }
 
-    inline function autoTap():Bool
+    inline function autoTap(enabled:Bool = false):Bool
     {
         //loop forever
-        return true;
+        return enabled;
     }
 
     public function destory(){
