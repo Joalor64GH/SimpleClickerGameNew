@@ -132,7 +132,7 @@ class StoreState extends FlxState
 		if (select < 0)
 			select = grpitem.length - 1;
 
-		if (select > grpitem.length)
+		if (select >= grpitem.length)
 			select = 0;
 
         if (FlxG.keys.justPressed.ENTER)
