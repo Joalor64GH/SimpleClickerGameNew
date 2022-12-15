@@ -35,7 +35,7 @@ class PlayState extends FlxState
         sprite.screenCenter();
         add(sprite);
 
-        if (FlxG.sound.music == null) // don't restart the music if it's already playing
+        if (FlxG.sound.music == null || !FlxG.sound.music.playing) // don't restart the music if it's already playing
         {
             // idk should we add more then one song??
             FlxG.sound.playMusic(Paths.music('buttonClicker'), 1, true);

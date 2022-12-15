@@ -30,7 +30,7 @@ class StoreState extends FlxState
         body_someone();
 
         open_store();
-        if (FlxG.sound.music == null) // don't restart the music if it's already playing
+        if (FlxG.sound.music == null || !FlxG.sound.music.playing) // don't restart the music if it's already playing
         {
             // idk should we add more then one song??
             FlxG.sound.playMusic(Paths.music('shopMusic'), 1, true);
@@ -132,7 +132,7 @@ class StoreState extends FlxState
 		if (select < 0)
 			select = grpitem.length - 1;
 
-		if (select >= grpitem.length)
+		if (select >= grpitem.length - 1)
 			select = 0;
 
         if (FlxG.keys.justPressed.ENTER)
