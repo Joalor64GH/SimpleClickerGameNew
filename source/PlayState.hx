@@ -1,5 +1,6 @@
 package;
 
+import flixel.util.FlxTimer;
 import flixel.text.FlxText;
 import flixel.FlxState;
 import flixel.FlxG;
@@ -24,24 +25,42 @@ class PlayState extends FlxState
         text.screenCenter(X);
         add(text);
 
-        coinTxt = new FlxText(5, FlxG.height - 18, 0, "Coin: " + FlxG.save.data.coin, 16);
+        coinTxt = new FlxText(5, FlxG.height - 18, 0, "Coin: " + FlxG.save.data.coin +
+        if (FlxG.save.data.autoTap) 
+            " | Auto Tap is Enable";
+        else
+            "", 16);
         add(coinTxt);
 
         sprite = new Sprite_Game(0, 0, "button");
         sprite.screenCenter();
         add(sprite);
+
+        if (FlxG.sound.music == null) // don't restart the music if it's already playing
+        {
+            // idk should we add more then one song??
+            FlxG.sound.playMusic(Paths.music('buttonClicker'), 1, true);
+        }
     }
 
     override public function update(elapsed:Float)
     {
         super.update(elapsed);
 
-        coinTxt.text = "Coin: " + FlxG.save.data.coin;
+        coinTxt.text = "Coin: " + FlxG.save.data.coin + 
+        if (FlxG.save.data.autoTap == 1) 
+            " | Auto Tap is Enable";
+        else
+            "";
 
         var options = FlxG.keys.justPressed.Q;
         var press = FlxG.keys.justPressed.ENTER;
         var press_alt = FlxG.keys.justPressed.SPACE;
         var store = FlxG.keys.justPressed.S;
+
+        if (FlxG.save.data.autoTap == 1){
+            autoTap();
+        }
 
         // if (options)
         // {
@@ -50,6 +69,8 @@ class PlayState extends FlxState
 
         if (store)
         {
+            trace('wellcome');
+
             FlxG.switchState(new StoreState());
 
             FlxG.save.flush();
@@ -63,7 +84,7 @@ class PlayState extends FlxState
                 FlxG.save.data.coin += 2;
             else
                 FlxG.save.data.coin++;
-            
+
             FlxG.save.flush();
         }
 
@@ -75,17 +96,29 @@ class PlayState extends FlxState
                 FlxG.save.data.coin += 2;
             else
                 FlxG.save.data.coin++;
-            
+
             FlxG.save.flush();
         }
 
-        if (FlxG.save.data.autoTap == 1){
-            autoTap();
-        }  
+        if (FlxG.mouse.overlaps(sprite) && FlxG.mouse.justPressed){
+            sprite.animation.play('tap');
+
+            if (FlxG.save.data.x2 == 1)
+                FlxG.save.data.coin += 2;
+            else
+                FlxG.save.data.coin++;
+        }
     }
 
-    function autoTap()
+    function autoTap():Bool
     {
         //loop forever
+        return true;
+    }
+
+    public function destory(){
+        if (FlxG.sound.music != null){
+            FlxG.sound.music.stop();
+        }
     }
 }

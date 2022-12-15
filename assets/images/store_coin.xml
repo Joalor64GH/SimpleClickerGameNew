@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="store_coin.png">
+	<!-- Created with Adobe Animate version 20.0.2.22168 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="blanks0000" x="0" y="0" width="0" height="0" frameX="-107374182" frameY="-107374182" frameWidth="0" frameHeight="0"/>
+	<SubTexture name="coin_2000000" x="0" y="0" width="51" height="33" frameX="0" frameY="0" frameWidth="111" frameHeight="33"/>
+	<SubTexture name="coin_2000001" x="0" y="0" width="51" height="33" frameX="0" frameY="0" frameWidth="111" frameHeight="33"/>
+	<SubTexture name="coin_2000002" x="0" y="0" width="51" height="33" frameX="0" frameY="0" frameWidth="111" frameHeight="33"/>
+	<SubTexture name="coin_2000003" x="51" y="0" width="111" height="33"/>
+	<SubTexture name="coin_2000004" x="51" y="0" width="111" height="33"/>
+	<SubTexture name="coin_2000005" x="51" y="0" width="111" height="33"/>
+	<SubTexture name="coin_2000006" x="51" y="0" width="111" height="33"/>
+	<SubTexture name="coin_4000000" x="162" y="0" width="51" height="33" frameX="0" frameY="0" frameWidth="111" frameHeight="33"/>
+	<SubTexture name="coin_4000001" x="162" y="0" width="51" height="33" frameX="0" frameY="0" frameWidth="111" frameHeight="33"/>
+	<SubTexture name="coin_4000002" x="162" y="0" width="51" height="33" frameX="0" frameY="0" frameWidth="111" frameHeight="33"/>
+	<SubTexture name="coin_4000003" x="213" y="0" width="111" height="33"/>
+	<SubTexture name="coin_4000004" x="213" y="0" width="111" height="33"/>
+	<SubTexture name="coin_4000005" x="213" y="0" width="111" height="33"/>
+	<SubTexture name="coin_4000006" x="213" y="0" width="111" height="33"/>
+	<SubTexture name="coin_buy!0000" x="324" y="0" width="50" height="33" frameX="0" frameY="0" frameWidth="59" frameHeight="33"/>
+	<SubTexture name="coin_buy!0001" x="324" y="0" width="50" height="33" frameX="0" frameY="0" frameWidth="59" frameHeight="33"/>
+	<SubTexture name="coin_buy!0002" x="324" y="0" width="50" height="33" frameX="0" frameY="0" frameWidth="59" frameHeight="33"/>
+	<SubTexture name="coin_buy!0003" x="374" y="0" width="59" height="33"/>
+	<SubTexture name="coin_buy!0004" x="374" y="0" width="59" height="33"/>
+	<SubTexture name="coin_buy!0005" x="374" y="0" width="59" height="33"/>
+	<SubTexture name="dont_have_much_money0000" x="433" y="0" width="51" height="33" frameX="0" frameY="0" frameWidth="458" frameHeight="33"/>
+	<SubTexture name="dont_have_much_money0001" x="433" y="0" width="51" height="33" frameX="0" frameY="0" frameWidth="458" frameHeight="33"/>
+	<SubTexture name="dont_have_much_money0002" x="433" y="0" width="51" height="33" frameX="0" frameY="0" frameWidth="458" frameHeight="33"/>
+	<SubTexture name="dont_have_much_money0003" x="0" y="33" width="120" height="33" frameX="0" frameY="0" frameWidth="458" frameHeight="33"/>
+	<SubTexture name="dont_have_much_money0004" x="0" y="33" width="120" height="33" frameX="0" frameY="0" frameWidth="458" frameHeight="33"/>
+	<SubTexture name="dont_have_much_money0005" x="0" y="33" width="120" height="33" frameX="0" frameY="0" frameWidth="458" frameHeight="33"/>
+	<SubTexture name="dont_have_much_money0006" x="120" y="33" width="185" height="33" frameX="0" frameY="0" frameWidth="458" frameHeight="33"/>
+	<SubTexture name="dont_have_much_money0007" x="120" y="33" width="185" height="33" frameX="0" frameY="0" frameWidth="458" frameHeight="33"/>
+	<SubTexture name="dont_have_much_money0008" x="120" y="33" width="185" height="33" frameX="0" frameY="0" frameWidth="458" frameHeight="33"/>
+	<SubTexture name="dont_have_much_money0009" x="0" y="66" width="258" height="33" frameX="0" frameY="0" frameWidth="458" frameHeight="33"/>
+	<SubTexture name="dont_have_much_money0010" x="0" y="66" width="258" height="33" frameX="0" frameY="0" frameWidth="458" frameHeight="33"/>
+	<SubTexture name="dont_have_much_money0011" x="0" y="99" width="389" height="33" frameX="0" frameY="0" frameWidth="458" frameHeight="33"/>
+	<SubTexture name="dont_have_much_money0012" x="0" y="99" width="389" height="33" frameX="0" frameY="0" frameWidth="458" frameHeight="33"/>
+	<SubTexture name="dont_have_much_money0013" x="0" y="132" width="458" height="33"/>
+	<SubTexture name="dont_have_much_money0014" x="0" y="132" width="458" height="33"/>
+	<SubTexture name="dont_have_much_money0015" x="0" y="132" width="458" height="33"/>
+</TextureAtlas>

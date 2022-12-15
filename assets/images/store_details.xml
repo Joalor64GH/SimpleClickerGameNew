@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="store_details.png">
+	<!-- Created with Adobe Animate version 20.0.2.22168 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="select_10000" x="0" y="0" width="50" height="33" frameX="0" frameY="0" frameWidth="355" frameHeight="33"/>
+	<SubTexture name="select_10001" x="0" y="0" width="50" height="33" frameX="0" frameY="0" frameWidth="355" frameHeight="33"/>
+	<SubTexture name="select_10002" x="0" y="0" width="50" height="33" frameX="0" frameY="0" frameWidth="355" frameHeight="33"/>
+	<SubTexture name="select_10003" x="50" y="0" width="109" height="33" frameX="0" frameY="0" frameWidth="355" frameHeight="33"/>
+	<SubTexture name="select_10004" x="50" y="0" width="109" height="33" frameX="0" frameY="0" frameWidth="355" frameHeight="33"/>
+	<SubTexture name="select_10005" x="50" y="0" width="109" height="33" frameX="0" frameY="0" frameWidth="355" frameHeight="33"/>
+	<SubTexture name="select_10006" x="159" y="0" width="132" height="33" frameX="0" frameY="0" frameWidth="355" frameHeight="33"/>
+	<SubTexture name="select_10007" x="159" y="0" width="132" height="33" frameX="0" frameY="0" frameWidth="355" frameHeight="33"/>
+	<SubTexture name="select_10008" x="159" y="0" width="132" height="33" frameX="0" frameY="0" frameWidth="355" frameHeight="33"/>
+	<SubTexture name="select_10009" x="291" y="0" width="178" height="33" frameX="0" frameY="0" frameWidth="355" frameHeight="33"/>
+	<SubTexture name="select_10010" x="291" y="0" width="178" height="33" frameX="0" frameY="0" frameWidth="355" frameHeight="33"/>
+	<SubTexture name="select_10011" x="291" y="0" width="178" height="33" frameX="0" frameY="0" frameWidth="355" frameHeight="33"/>
+	<SubTexture name="select_10012" x="0" y="33" width="309" height="33" frameX="0" frameY="0" frameWidth="355" frameHeight="33"/>
+	<SubTexture name="select_10013" x="0" y="33" width="309" height="33" frameX="0" frameY="0" frameWidth="355" frameHeight="33"/>
+	<SubTexture name="select_10014" x="0" y="33" width="309" height="33" frameX="0" frameY="0" frameWidth="355" frameHeight="33"/>
+	<SubTexture name="select_10015" x="0" y="33" width="309" height="33" frameX="0" frameY="0" frameWidth="355" frameHeight="33"/>
+	<SubTexture name="select_10016" x="0" y="33" width="309" height="33" frameX="0" frameY="0" frameWidth="355" frameHeight="33"/>
+	<SubTexture name="select_10017" x="0" y="33" width="309" height="33" frameX="0" frameY="0" frameWidth="355" frameHeight="33"/>
+	<SubTexture name="select_10018" x="0" y="66" width="355" height="33"/>
+	<SubTexture name="select_10019" x="0" y="66" width="355" height="33"/>
+	<SubTexture name="select_10020" x="0" y="66" width="355" height="33"/>
+	<SubTexture name="select_20000" x="355" y="66" width="67" height="33" frameX="0" frameY="0" frameWidth="267" frameHeight="33"/>
+	<SubTexture name="select_20001" x="355" y="66" width="67" height="33" frameX="0" frameY="0" frameWidth="267" frameHeight="33"/>
+	<SubTexture name="select_20002" x="355" y="66" width="67" height="33" frameX="0" frameY="0" frameWidth="267" frameHeight="33"/>
+	<SubTexture name="select_20003" x="0" y="99" width="114" height="33" frameX="0" frameY="0" frameWidth="267" frameHeight="33"/>
+	<SubTexture name="select_20004" x="0" y="99" width="114" height="33" frameX="0" frameY="0" frameWidth="267" frameHeight="33"/>
+	<SubTexture name="select_20005" x="0" y="99" width="114" height="33" frameX="0" frameY="0" frameWidth="267" frameHeight="33"/>
+	<SubTexture name="select_20006" x="114" y="99" width="136" height="33" frameX="0" frameY="0" frameWidth="267" frameHeight="33"/>
+	<SubTexture name="select_20007" x="114" y="99" width="136" height="33" frameX="0" frameY="0" frameWidth="267" frameHeight="33"/>
+	<SubTexture name="select_20008" x="114" y="99" width="136" height="33" frameX="0" frameY="0" frameWidth="267" frameHeight="33"/>
+	<SubTexture name="select_20009" x="250" y="99" width="183" height="33" frameX="0" frameY="0" frameWidth="267" frameHeight="33"/>
+	<SubTexture name="select_20010" x="250" y="99" width="183" height="33" frameX="0" frameY="0" frameWidth="267" frameHeight="33"/>
+	<SubTexture name="select_20011" x="250" y="99" width="183" height="33" frameX="0" frameY="0" frameWidth="267" frameHeight="33"/>
+	<SubTexture name="select_20012" x="0" y="132" width="267" height="33"/>
+	<SubTexture name="select_20013" x="0" y="132" width="267" height="33"/>
+	<SubTexture name="select_20014" x="0" y="132" width="267" height="33"/>
+	<SubTexture name="select_30000" x="267" y="132" width="69" height="33" frameX="0" frameY="0" frameWidth="214" frameHeight="33"/>
+	<SubTexture name="select_30001" x="267" y="132" width="69" height="33" frameX="0" frameY="0" frameWidth="214" frameHeight="33"/>
+	<SubTexture name="select_30002" x="267" y="132" width="69" height="33" frameX="0" frameY="0" frameWidth="214" frameHeight="33"/>
+	<SubTexture name="select_30003" x="336" y="132" width="100" height="33" frameX="0" frameY="0" frameWidth="214" frameHeight="33"/>
+	<SubTexture name="select_30004" x="336" y="132" width="100" height="33" frameX="0" frameY="0" frameWidth="214" frameHeight="33"/>
+	<SubTexture name="select_30005" x="336" y="132" width="100" height="33" frameX="0" frameY="0" frameWidth="214" frameHeight="33"/>
+	<SubTexture name="select_30006" x="0" y="165" width="147" height="33" frameX="0" frameY="0" frameWidth="214" frameHeight="33"/>
+	<SubTexture name="select_30007" x="0" y="165" width="147" height="33" frameX="0" frameY="0" frameWidth="214" frameHeight="33"/>
+	<SubTexture name="select_30008" x="0" y="165" width="147" height="33" frameX="0" frameY="0" frameWidth="214" frameHeight="33"/>
+	<SubTexture name="select_30009" x="147" y="165" width="214" height="33"/>
+	<SubTexture name="select_30010" x="147" y="165" width="214" height="33"/>
+	<SubTexture name="select_30011" x="147" y="165" width="214" height="33"/>
+	<SubTexture name="select_30012" x="147" y="165" width="214" height="33"/>
+</TextureAtlas>
