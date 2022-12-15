@@ -28,13 +28,6 @@ class StoreState extends FlxState
 
         item_display();
         body_someone();
-        open_store();
-
-        if (FlxG.sound.music == null) // don't restart the music if it's already playing
-        {
-            // idk should we add more then one song??
-            FlxG.sound.playMusic(Paths.music('shopMusic'), 1, true);
-        }
     }
 
     inline function body_someone()
@@ -142,8 +135,7 @@ class StoreState extends FlxState
                 case "X2":
                     if (FlxG.save.data.coin < 200){
                         trace('not have much money we want');
-                        didnt_have_much_money();
-                    }else if (FlxG.save.data.coin > 200){
+                    }else if (FlxG.save.data.coin < 200){
                         FlxG.save.data.coin -= 200;
                         FlxG.save.data.x2++;
                         buy_animation();
@@ -154,117 +146,12 @@ class StoreState extends FlxState
                     }
 
                 case "Auto Tap":
-                    // unfinsished, tested
-                    if (FlxG.save.data.coin < 400){
-                        trace('not have much money we want');
-                        didnt_have_much_money();
-                    }else if (FlxG.save.data.coin > 400){
-                        FlxG.save.data.coin -= 400;
-                        FlxG.save.data.autoTap++;
-                        buy_animation();
-                    }else if (FlxG.save.data.x2 == 1){
-                        trace('x2 active!');
-                        FlxG.save.data.coin -= 0;
-                        FlxG.save.data.autoTap++;
-                    }
+
 
                 case "Back":
                     FlxG.save.flush();
                     FlxG.switchState(new PlayState());
             }
-        }
-    }
-
-    public function destory(){
-        if (FlxG.sound.music != null){
-            FlxG.sound.music.stop();
-        }
-    }
-
-    function open_store()
-    {
-        switch(item[select])
-        {
-            case "X2":
-                if (coin_details.animation.getByName('buy!') != null){
-                    coin_details.animation.play("coin 200");
-                    coin_details.visible = true;
-                    coin_details.color = 0xCCCCCC;
-                }
-
-            case "Auto Tap":
-                if (coin_details.animation.getByName('buy!') != null){
-                    coin_details.animation.play("coin 400");
-                    coin_details.visible = true;
-                    coin_details.color = 0xCCCCCC;
-                }
-
-            case "Back":
-                if (coin_details.animation.getByName('buy!') != null){
-                    coin_details.animation.play("blanks");
-                    coin_details.visible = false;
-                    coin_details.color = 0xCCCCCC;
-                }
-        }        
-    }
-
-    function buy_animation() 
-    {
-        coin_details.animation.play("buy!");
-        coin_details.color = 0x09FF00;
-
-        switch(item[select])
-        {
-            case "X2":
-                if (coin_details.animation.getByName('buy!') != null){
-                    coin_details.animation.play("coin 200");
-                    coin_details.visible = true;
-                    coin_details.color = 0xCCCCCC;
-                }
-
-            case "Auto Tap":
-                if (coin_details.animation.getByName('buy!') != null){
-                    coin_details.animation.play("coin 400");
-                    coin_details.visible = true;
-                    coin_details.color = 0xCCCCCC;
-                }
-
-            case "Back":
-                if (coin_details.animation.getByName('buy!') != null){
-                    coin_details.animation.play("blanks");
-                    coin_details.visible = false;
-                    coin_details.color = 0xCCCCCC;
-                }
-        }
-    }
-
-    function didnt_have_much_money()
-    {
-        coin_details.animation.play("dont_much_money!");
-        coin_details.color = 0xBB0000;
-
-        switch(item[select])
-        {
-            case "X2":
-                if (coin_details.animation.getByName('dont_much_money!') != null){
-                    coin_details.animation.play("coin 200");
-                    coin_details.visible = true;
-                    coin_details.color = 0xCCCCCC;
-                }
-
-            case "Auto Tap":
-                if (coin_details.animation.getByName('dont_much_money!') != null){
-                    coin_details.animation.play("coin 400");
-                    coin_details.visible = true;
-                    coin_details.color = 0xCCCCCC;
-                }
-
-            case "Back":
-                if (coin_details.animation.getByName('dont_much_money!') != null){
-                    coin_details.animation.play("blanks");
-                    coin_details.visible = false;
-                    coin_details.color = 0xCCCCCC;
-                }
         }
     }
 }
