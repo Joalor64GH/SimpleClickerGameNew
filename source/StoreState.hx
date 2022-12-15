@@ -26,16 +26,22 @@ class StoreState extends FlxState
 
         item_display();
         body_someone();
+
+        if (FlxG.sound.music == null) // don't restart the music if it's already playing
+        {
+            // idk should we add more then one song??
+            FlxG.sound.playMusic(Paths.music('shopMusic'), 1, true);
+        }
     }
 
-    function body_someone()
+    inline function body_someone()
     {
         human = new Sprite_Game(300, 0, 'shop');
         human.screenCenter(Y);
         add(human);
     }
 
-    function item_display()
+    inline function item_display()
     {
         coinTxt = new FlxText(5, FlxG.height - 18, 0, "Coin: " + FlxG.save.data.coin, 16);
         add(coinTxt);

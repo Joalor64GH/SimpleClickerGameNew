@@ -30,6 +30,12 @@ class PlayState extends FlxState
         sprite = new Sprite_Game(0, 0, "button");
         sprite.screenCenter();
         add(sprite);
+
+        if (FlxG.sound.music == null) // don't restart the music if it's already playing
+        {
+            // idk should we add more then one song??
+            FlxG.sound.playMusic(Paths.music('buttonClicker'), 1, true);
+        }
     }
 
     override public function update(elapsed:Float)
