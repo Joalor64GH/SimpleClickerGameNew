@@ -171,13 +171,11 @@ class StoreState extends FlxState
                 case "Back":
                     FlxG.save.flush();
                     FlxG.switchState(new PlayState());
-            }
-        }
-    }
 
-    public function destory(){
-        if (FlxG.sound.music != null){
-            FlxG.sound.music.stop();
+                    if (FlxG.sound.music != null){
+                        FlxG.sound.music.stop();
+                    }
+            }
         }
     }
 

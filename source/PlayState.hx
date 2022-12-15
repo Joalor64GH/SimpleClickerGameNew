@@ -24,7 +24,11 @@ class PlayState extends FlxState
         text.screenCenter(X);
         add(text);
 
-        coinTxt = new FlxText(5, FlxG.height - 18, 0, "Coin: " + FlxG.save.data.coin, 16);
+        coinTxt = new FlxText(5, FlxG.height - 18, 0, "Coin: " + FlxG.save.data.coin +
+        if (FlxG.save.data.autoTap) 
+            " | Auto Tap is Enable";
+        else
+            "", 16);
         add(coinTxt);
 
         sprite = new Sprite_Game(0, 0, "button");
@@ -42,7 +46,11 @@ class PlayState extends FlxState
     {
         super.update(elapsed);
 
-        coinTxt.text = "Coin: " + FlxG.save.data.coin;
+        coinTxt.text = "Coin: " + FlxG.save.data.coin + 
+        if (FlxG.save.data.autoTap == 1) 
+            " | Auto Tap is Enable";
+        else
+            "";
 
         var options = FlxG.keys.justPressed.Q;
         var press = FlxG.keys.justPressed.ENTER;
@@ -57,7 +65,13 @@ class PlayState extends FlxState
 
         if (store)
         {
+            trace('wellcome');
+
             FlxG.switchState(new StoreState());
+
+            if (FlxG.sound.music != null){
+                FlxG.sound.music.stop();
+            }
 
             FlxG.save.flush();
         }
@@ -94,11 +108,5 @@ class PlayState extends FlxState
     {
         //loop forever
         return enabled;
-    }
-
-    public function destory(){
-        if (FlxG.sound.music != null){
-            FlxG.sound.music.stop();
-        }
     }
 }
