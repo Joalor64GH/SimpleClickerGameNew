@@ -96,9 +96,7 @@ class PlayState extends FlxState
         return true;
     }
 
-    override function destory(){
-        super.destroy();
-
+    public function destory(){
         if (FlxG.sound.music != null){
             FlxG.sound.music.stop();
         }

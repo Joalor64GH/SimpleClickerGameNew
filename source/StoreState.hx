@@ -115,9 +115,7 @@ class StoreState extends FlxState
         }
     }
 
-    override function destory(){
-        super.destroy();
-
+    public function destory(){
         if (FlxG.sound.music != null){
             FlxG.sound.music.stop();
         }
