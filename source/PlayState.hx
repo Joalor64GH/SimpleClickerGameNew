@@ -57,6 +57,7 @@ class PlayState extends FlxState
         var press_alt = FlxG.keys.justPressed.SPACE;
         var store = FlxG.keys.justPressed.S;
         var reset = FlxG.keys.justPressed.R;
+        var devThing = FlxG.keys.justPressed.L;
 
         // if (options)
         // {
@@ -94,6 +95,26 @@ class PlayState extends FlxState
             FlxG.save.data.x2 = 0;
 
             FlxG.sound.play(Paths.sound('resetSound'), 1);
+        }
+
+        if (devThing){
+            // #if sys
+            // if (Sys.args().contains('dev mode')){
+            //     FlxG.save.data.coin += 9999;
+            // }
+            // #else
+            // trace('you do not have dev mode enabled');
+            // #end
+            #if macro
+            if (@:privateAccess Macros.getDefine('dev mode')){//I'm too lazy
+                FlxG.save.data.coin += 9999;
+            }
+            else {
+                trace('you do not have dev mode enabled');
+            }
+            #else
+            trace('platform does not support dev mode');
+            #end
         }
 
         if (FlxG.save.data.autoTap == 1){
