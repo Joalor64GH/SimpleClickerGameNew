@@ -1,5 +1,6 @@
 package;
 
+import flixel.util.FlxTimer;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.FlxG;
 import flixel.util.FlxColor;
@@ -83,7 +84,16 @@ class StoreState extends FlxState
                 txt.color = FlxColor.YELLOW;
         });
         controls();
+        // talk_npc();
     }
+
+    /*function talk_npc()
+    {
+        if (FlxG.mouse.overlaps(human) && FlxG.mouse.justPressed)
+        {
+            human.animation.play('talk');
+        }
+    }*/
 
     function controls()
     {
@@ -140,17 +150,38 @@ class StoreState extends FlxState
             switch(item[select])
             {
                 case "X2":
-                    if (FlxG.save.data.coin < 200){
+                    if (FlxG.save.data.coin < 200 || SystemData.ownItem == false)
+                    {
                         trace('not have much money we want');
+                        SystemData.ownItem == false;
                         didnt_have_much_money();
-                    }else if (FlxG.save.data.coin > 200){
-                        FlxG.save.data.coin -= 200;
-                        FlxG.save.data.x2++;
-                        buy_animation();
-                    }else if (FlxG.save.data.x2 == 1){
+                    }
+                    else if (FlxG.save.data.coin < 200 || SystemData.ownItem == false)
+                    {
+                        trace('not have much money we want');
+                        SystemData.ownItem == false;
+                        didnt_have_much_money();
+                    }else if (FlxG.save.data.coin == 200 || SystemData.ownItem == false)
+                    {
                         trace('x2 active!');
-                        FlxG.save.data.coin -= 0;
-                        FlxG.save.data.x2++;
+                        FlxG.save.data.coin -= 200;
+                        FlxG.save.data.x2 = true;
+                        SystemData.ownItem == true;
+                        buy_animation();
+                    }
+                    else if (SystemData.ownItem == true) //when you already buy that item
+                    {
+                        if (FlxG.save.data.x2 == true){
+                            trace('x2 Unactive!');
+                            FlxG.save.data.coin -= 0;
+                            FlxG.save.data.x2 = false;
+                            SystemData.ownItem == true;
+                        }else if (FlxG.save.data.x2 == false) {
+                            trace('x2 active!');
+                            FlxG.save.data.coin -= 0;
+                            FlxG.save.data.x2 = true;
+                            SystemData.ownItem == true;
+                        }
                     }
 
                 case "Auto Tap":
@@ -158,7 +189,8 @@ class StoreState extends FlxState
                     if (FlxG.save.data.coin < 400){
                         trace('not have much money we want');
                         didnt_have_much_money();
-                    }else if (FlxG.save.data.coin > 400){
+                    }else if (FlxG.save.data.coin == 400){
+                        trace('x2 active!');
                         FlxG.save.data.coin -= 400;
                         FlxG.save.data.autoTap++;
                         buy_animation();
@@ -211,29 +243,36 @@ class StoreState extends FlxState
         coin_details.animation.play("buy!");
         coin_details.color = 0x09FF00;
 
-        switch(item[select])
-        {
-            case "X2":
-                if (coin_details.animation.getByName('buy!') != null){
-                    coin_details.animation.play("coin 200");
-                    coin_details.visible = true;
-                    coin_details.color = 0xCCCCCC;
-                }
+        human.animation.play('thank_for_buy');
+        
+        new FlxTimer().start(1, function(tmr:FlxTimer) {
+            switch(item[select])
+            {
+                case "X2":
+                    if (coin_details.animation.getByName('buy!') != null){
+                        coin_details.animation.play("coin 200");
+                        coin_details.visible = true;
+                        coin_details.color = 0xCCCCCC;
+                        human.animation.play('idle'); 
+                    }
 
-            case "Auto Tap":
-                if (coin_details.animation.getByName('buy!') != null){
-                    coin_details.animation.play("coin 400");
-                    coin_details.visible = true;
-                    coin_details.color = 0xCCCCCC;
-                }
+                case "Auto Tap":
+                    if (coin_details.animation.getByName('buy!') != null){
+                        coin_details.animation.play("coin 400");
+                        coin_details.visible = true;
+                        coin_details.color = 0xCCCCCC;
+                        human.animation.play('idle'); 
+                    }
 
-            case "Back":
-                if (coin_details.animation.getByName('buy!') != null){
-                    coin_details.animation.play("blanks");
-                    coin_details.visible = false;
-                    coin_details.color = 0xCCCCCC;
-                }
-        }
+                case "Back":
+                    if (coin_details.animation.getByName('buy!') != null){
+                        coin_details.animation.play("blanks");
+                        coin_details.visible = false;
+                        coin_details.color = 0xCCCCCC;
+                        human.animation.play('idle'); 
+                    }
+            }
+        });
     }
 
     function didnt_have_much_money()
@@ -241,28 +280,35 @@ class StoreState extends FlxState
         coin_details.animation.play("dont_much_money!");
         coin_details.color = 0xBB0000;
 
-        switch(item[select])
-        {
-            case "X2":
-                if (coin_details.animation.getByName('dont_much_money!') != null){
-                    coin_details.animation.play("coin 200");
-                    coin_details.visible = true;
-                    coin_details.color = 0xCCCCCC;
-                }
+        human.animation.play('dont_much_money_i_want');
+        
+        new FlxTimer().start(1, function(tmr:FlxTimer) {
+            switch(item[select])
+            {
+                case "X2":
+                    if (coin_details.animation.getByName('dont_much_money!') != null){
+                        coin_details.animation.play("coin 200");
+                        coin_details.visible = true;
+                        coin_details.color = 0xCCCCCC;
+                        human.animation.play('idle'); 
+                    }
 
-            case "Auto Tap":
-                if (coin_details.animation.getByName('dont_much_money!') != null){
-                    coin_details.animation.play("coin 400");
-                    coin_details.visible = true;
-                    coin_details.color = 0xCCCCCC;
-                }
+                case "Auto Tap":
+                    if (coin_details.animation.getByName('dont_much_money!') != null){
+                        coin_details.animation.play("coin 400");
+                        coin_details.visible = true;
+                        coin_details.color = 0xCCCCCC;
+                        human.animation.play('idle'); 
+                    }
 
-            case "Back":
-                if (coin_details.animation.getByName('dont_much_money!') != null){
-                    coin_details.animation.play("blanks");
-                    coin_details.visible = false;
-                    coin_details.color = 0xCCCCCC;
-                }
-        }
+                case "Back":
+                    if (coin_details.animation.getByName('dont_much_money!') != null){
+                        coin_details.animation.play("blanks");
+                        coin_details.visible = false;
+                        coin_details.color = 0xCCCCCC;
+                        human.animation.play('idle'); 
+                    }
+            }
+        }); 
     }
 }

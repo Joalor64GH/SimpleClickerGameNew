@@ -7,9 +7,7 @@ using StringTools;
 
 class SystemData
 {
-    public function new(){
-
-    }
+	public static var ownItem:Bool = false;
 
     public static inline function stringFile(path:String):String
     {
@@ -26,13 +24,19 @@ class SystemData
 
     inline static public function saveData()
     {
-        if (FlxG.save.data.x2 == null)
+        /*if (FlxG.save.data.x2 == null)
             FlxG.save.data.x2 = 0; 
 
         if (FlxG.save.data.autoTap == null)
-            FlxG.save.data.autoTap = 0;
+            FlxG.save.data.autoTap = 0;*/
 
-        limitNumber();
+        // limitNumber();
+
+        if (FlxG.save.data.x2 == null)
+            FlxG.save.data.x2 = false; 
+
+        if (FlxG.save.data.autoTap == null)
+            FlxG.save.data.autoTap = false;
     }
 
     inline static public function limitNumber()

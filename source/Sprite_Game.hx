@@ -18,6 +18,20 @@ class Sprite_Game extends FlxSprite
     var non_idle:Bool = false;
 
     /**
+        * for shop
+        
+        * to playing thank animation
+    **/
+    public static var thank_buy:Bool = true;
+
+    /**
+        * for shop
+
+        * to playing dont much money animation
+    **/
+    public static var dont_much_coin:Bool = true;
+
+    /**
         * Enter your x postion
     **/
     public var x_pos:Float;
@@ -32,7 +46,7 @@ class Sprite_Game extends FlxSprite
     **/
     public var sprite:String = 'button';
 
-    public function new(x_pos:Float, y_pos:Float, ?sprite:String = "button"):Void
+    public function new(x_pos:Float, y_pos:Float, ?sprite:String = "button", ?thank_buy:Bool = true, ?dont_much_coin:Bool = true):Void
     {
         super(x_pos, y_pos);
 
@@ -47,7 +61,12 @@ class Sprite_Game extends FlxSprite
 
             case "shop":
                 frames = Paths.getSparrowAtlas('shop');
-                animation.addByPrefix('idle', 'shop_human', 16, true);
+                animation.addByPrefix('idle', 'shop_human0', 16, true);
+                animation.addByPrefix('talk', 'shop_human_talk0', 14, false);
+                thank_buy = true;
+                animation.addByPrefix('thank_for_buy', 'shop_human_buy0', 14, false);
+                dont_much_coin = true;
+                animation.addByPrefix('dont_much_money_i_want', 'shop_human_not_much_money_i_want0', 14, false);
                 antialiasing = true;
                 non_idle = false;
 
@@ -77,9 +96,6 @@ class Sprite_Game extends FlxSprite
 
         playAnimation('idle');
         animation.play('idle');
-    }
-
-    inline public function playAnimation(name:String, ?forced:Bool, ?reverse:Bool, ?frame:Int):Void{
-        animation.play(name, forced, reverse, frame);
+        // }
     }
 }

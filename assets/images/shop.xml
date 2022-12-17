@@ -23,10 +23,10 @@
 	<SubTexture name="shop_human0018" x="0" y="0" width="407" height="445"/>
 	<SubTexture name="shop_human0019" x="407" y="0" width="407" height="445"/>
 	<SubTexture name="shop_human0020" x="407" y="0" width="407" height="445"/>
-	<SubTexture name="shop_human0021" x="0" y="445" width="407" height="445"/>
-	<SubTexture name="shop_human0022" x="0" y="445" width="407" height="445"/>
-	<SubTexture name="shop_human0023" x="407" y="445" width="407" height="445"/>
-	<SubTexture name="shop_human0024" x="407" y="445" width="407" height="445"/>
+	<SubTexture name="shop_human0021" x="814" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0022" x="814" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0023" x="1221" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human0024" x="1221" y="0" width="407" height="445"/>
 	<SubTexture name="shop_human0025" x="0" y="0" width="407" height="445"/>
 	<SubTexture name="shop_human0026" x="0" y="0" width="407" height="445"/>
 	<SubTexture name="shop_human0027" x="0" y="0" width="407" height="445"/>
@@ -34,4 +34,63 @@
 	<SubTexture name="shop_human0029" x="0" y="0" width="407" height="445"/>
 	<SubTexture name="shop_human0030" x="0" y="0" width="407" height="445"/>
 	<SubTexture name="shop_human0031" x="0" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human_buy0000" x="1628" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human_buy0001" x="1628" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human_buy0002" x="1628" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human_buy0003" x="2035" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human_buy0004" x="2035" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human_buy0005" x="2442" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human_buy0006" x="2442" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human_buy0007" x="2442" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human_buy0008" x="2442" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human_buy0009" x="2849" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human_buy0010" x="2849" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human_buy0011" x="3256" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human_buy0012" x="3663" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human_buy0013" x="3663" y="0" width="407" height="445"/>
+	<SubTexture name="shop_human_buy0014" x="0" y="445" width="407" height="445"/>
+	<SubTexture name="shop_human_buy0015" x="0" y="445" width="407" height="445"/>
+	<SubTexture name="shop_human_buy0016" x="407" y="445" width="407" height="445"/>
+	<SubTexture name="shop_human_buy0017" x="814" y="445" width="407" height="445"/>
+	<SubTexture name="shop_human_buy0018" x="1221" y="445" width="407" height="445"/>
+	<SubTexture name="shop_human_buy0019" x="1221" y="445" width="407" height="445"/>
+	<SubTexture name="shop_human_buy0020" x="1221" y="445" width="407" height="445"/>
+	<SubTexture name="shop_human_not_much_money_i_want0000" x="1628" y="445" width="407" height="445"/>
+	<SubTexture name="shop_human_not_much_money_i_want0001" x="1628" y="445" width="407" height="445"/>
+	<SubTexture name="shop_human_not_much_money_i_want0002" x="1628" y="445" width="407" height="445"/>
+	<SubTexture name="shop_human_not_much_money_i_want0003" x="2035" y="445" width="407" height="445"/>
+	<SubTexture name="shop_human_not_much_money_i_want0004" x="2035" y="445" width="407" height="445"/>
+	<SubTexture name="shop_human_not_much_money_i_want0005" x="2442" y="445" width="407" height="445"/>
+	<SubTexture name="shop_human_not_much_money_i_want0006" x="2849" y="445" width="407" height="445"/>
+	<SubTexture name="shop_human_not_much_money_i_want0007" x="3256" y="445" width="407" height="445"/>
+	<SubTexture name="shop_human_not_much_money_i_want0008" x="3663" y="445" width="407" height="445"/>
+	<SubTexture name="shop_human_not_much_money_i_want0009" x="0" y="890" width="407" height="445"/>
+	<SubTexture name="shop_human_not_much_money_i_want0010" x="407" y="890" width="407" height="445"/>
+	<SubTexture name="shop_human_not_much_money_i_want0011" x="407" y="890" width="407" height="445"/>
+	<SubTexture name="shop_human_not_much_money_i_want0012" x="814" y="890" width="407" height="445"/>
+	<SubTexture name="shop_human_not_much_money_i_want0013" x="814" y="890" width="407" height="445"/>
+	<SubTexture name="shop_human_not_much_money_i_want0014" x="1221" y="890" width="407" height="445"/>
+	<SubTexture name="shop_human_not_much_money_i_want0015" x="1221" y="890" width="407" height="445"/>
+	<SubTexture name="shop_human_not_much_money_i_want0016" x="1628" y="890" width="407" height="445"/>
+	<SubTexture name="shop_human_not_much_money_i_want0017" x="1221" y="890" width="407" height="445"/>
+	<SubTexture name="shop_human_not_much_money_i_want0018" x="1221" y="890" width="407" height="445"/>
+	<SubTexture name="shop_human_talk0000" x="2035" y="890" width="407" height="445"/>
+	<SubTexture name="shop_human_talk0001" x="2035" y="890" width="407" height="445"/>
+	<SubTexture name="shop_human_talk0002" x="2442" y="890" width="407" height="445"/>
+	<SubTexture name="shop_human_talk0003" x="2442" y="890" width="407" height="445"/>
+	<SubTexture name="shop_human_talk0004" x="2849" y="890" width="407" height="445"/>
+	<SubTexture name="shop_human_talk0005" x="2849" y="890" width="407" height="445"/>
+	<SubTexture name="shop_human_talk0006" x="3256" y="890" width="407" height="445"/>
+	<SubTexture name="shop_human_talk0007" x="3256" y="890" width="407" height="445"/>
+	<SubTexture name="shop_human_talk0008" x="3256" y="890" width="407" height="445"/>
+	<SubTexture name="shop_human_talk0009" x="3663" y="890" width="407" height="445"/>
+	<SubTexture name="shop_human_talk0010" x="3663" y="890" width="407" height="445"/>
+	<SubTexture name="shop_human_talk0011" x="0" y="1335" width="407" height="445"/>
+	<SubTexture name="shop_human_talk0012" x="0" y="1335" width="407" height="445"/>
+	<SubTexture name="shop_human_talk0013" x="407" y="1335" width="407" height="445"/>
+	<SubTexture name="shop_human_talk0014" x="407" y="1335" width="407" height="445"/>
+	<SubTexture name="shop_human_talk0015" x="814" y="1335" width="407" height="445"/>
+	<SubTexture name="shop_human_talk0016" x="1221" y="1335" width="407" height="445"/>
+	<SubTexture name="shop_human_talk0017" x="1628" y="1335" width="407" height="445"/>
+	<SubTexture name="shop_human_talk0018" x="1628" y="1335" width="407" height="445"/>
 </TextureAtlas>
