@@ -150,18 +150,18 @@ class StoreState extends FlxState
             switch(item[select])
             {
                 case "X2":
-                    if (FlxG.save.data.coin < 200 || SystemData.ownItem == false || PlayState.ResetState.reset_data == false)
+                    if (FlxG.save.data.coin < 200 || SystemData.ownItem == false)
                     {
                         trace('not have much money we want');
                         SystemData.ownItem == false;
                         didnt_have_much_money();
                     }
-                    else if (FlxG.save.data.coin < 200 || SystemData.ownItem == false || PlayState.ResetState.reset_data == false)
+                    else if (FlxG.save.data.coin < 200 || SystemData.ownItem == false)
                     {
                         trace('not have much money we want');
                         SystemData.ownItem == false;
                         didnt_have_much_money();
-                    }else if (FlxG.save.data.coin == 200 || SystemData.ownItem == false || PlayState.ResetState.reset_data == false)
+                    }else if (FlxG.save.data.coin == 200 || SystemData.ownItem == false)
                     {
                         trace('x2 active!');
                         FlxG.save.data.coin -= 200;
@@ -175,11 +175,12 @@ class StoreState extends FlxState
                             trace('x2 Unactive!');
                             FlxG.save.data.coin -= 0;
                             FlxG.save.data.x2 = false;
-                        }
-                        else{
+                            SystemData.ownItem == true;
+                        }else if (FlxG.save.data.x2 == false) {
                             trace('x2 active!');
                             FlxG.save.data.coin -= 0;
                             FlxG.save.data.x2 = true;
+                            SystemData.ownItem == true;
                         }
                     }
 

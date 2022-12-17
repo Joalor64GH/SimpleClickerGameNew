@@ -100,13 +100,13 @@ class PlayState extends FlxState
         }
 
         if (reset){
-            //FlxG.save.data.coin = 0;
-            //FlxG.save.data.autoTap = 0;
-            //FlxG.save.data.x2 = 0;
+            FlxG.save.data.coin = 0;
+            FlxG.save.data.autoTap = 0;
+            FlxG.save.data.x2 = 0;
+            SystemData.ownItem = false; 
+            FlxG.sound.play(Paths.sound('resetSound'), 1);
 
-            //FlxG.sound.play(Paths.sound('resetSound'), 1);
-
-            openSubState(new ResetState());
+            // openSubState(new ResetState());
         }
 
         if (devThing){
