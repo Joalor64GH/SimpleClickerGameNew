@@ -70,10 +70,10 @@ class PlayState extends FlxState
         var reset = FlxG.keys.justPressed.R;
         var devThing = FlxG.keys.justPressed.L;
 
-        // if (options)
-        // {
-        //     FlxG.switchState(new OptionsState());
-        // }
+        if (options)
+        {
+            FlxG.switchState(new OptionsState());
+        }
 
         if (store)
         {
@@ -86,10 +86,6 @@ class PlayState extends FlxState
             }
 
             FlxG.save.flush();
-
-            if (FlxG.sound.music != null){
-                FlxG.sound.music.stop();
-            }
         }
 
         if (press || press_alt || FlxG.mouse.overlaps(sprite) && FlxG.mouse.justPressed || autoTap() && FlxG.elapsed % 2 == 0)

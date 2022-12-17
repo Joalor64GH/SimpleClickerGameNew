@@ -95,7 +95,6 @@ class Sprite_Game extends FlxSprite
         super.update(elapsed);
 
         playAnimation('idle');
-        // animation.play('idle');
         // }
     }
 

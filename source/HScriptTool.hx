@@ -12,7 +12,6 @@ class Script extends FlxBasic {
     public function new() {
         parser = new Parser();
         interp = new Interp();
-
 		super();
     }
 
