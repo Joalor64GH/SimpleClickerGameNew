@@ -81,10 +81,6 @@ class PlayState extends FlxState
             }
 
             FlxG.save.flush();
-
-            if (FlxG.sound.music != null){
-                FlxG.sound.music.stop();
-            }
         }
 
         if (press || press_alt || FlxG.mouse.overlaps(sprite) && FlxG.mouse.justPressed || autoTap() && FlxG.elapsed % 2 == 0)
