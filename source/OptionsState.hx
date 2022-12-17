@@ -25,18 +25,18 @@ class OptionsState extends FlxState {
             changeOption(-1);
         }
 
-        inline private function changeOption(option:Int){
-            selectedOption += option;
-
-            if (selectedOption > optionsCategory.length){
-                selectedOption = 5;
-            }
-            else if (selectedOption < optionsCategory.length){
-                selectedOption = 0;
-            }
-        }
-
         super.create();
+    }
+
+    private function changeOption(option:Int):Void{
+        selectedOption += option;
+
+        if (selectedOption > optionsCategory.length){
+            selectedOption = 5;
+        }
+        if (selectedOption < 0){
+            selectedOption = 0;
+        }
     }
 
     override function update(elapsed:Float){

@@ -1,5 +1,6 @@
 package;
 
+import flixel.input.gamepad.FlxGamepad;
 import flixel.util.FlxColor;
 import flixel.system.FlxAssets;
 import flixel.tweens.FlxTween;
@@ -8,10 +9,12 @@ import flixel.*;
 
 class PlayState extends FlxState
 {
-    var sprite:Sprite_Game;
-    var sprite_tween:FlxTween;
-    // var coin:Int = 0;
-    var coinTxt:FlxText;
+    public static var gamepad:FlxGamepad;
+
+    public static var sprite:Sprite_Game;
+    public static var sprite_tween:FlxTween;
+    public static var coinTxt:FlxText;
+    var checkText:FlxText;
 
     override public function create()
     {
@@ -19,26 +22,26 @@ class PlayState extends FlxState
 
         SystemData.coin(); //when first playing, number of coin are null
         SystemData.saveData();
-
+        // checkController();
         var text = new FlxText(0, 0, 0, "Simple Clicker Game", 32);
         text.screenCenter(X);
-        if (ResetState.in_subState == true){
-            text.visible = false;
-        }else{
-            text.visible = true;
-        }
         add(text);
 
-        coinTxt = new FlxText(5, FlxG.height - 18, 0, "Coin: " + FlxG.save.data.coin, 16);
+        coinTxt = new FlxText(5, FlxG.height - 18, 0, 
+            "Coin: " + FlxG.save.data.coin +
+            if (FlxG.save.data.autoTap == true)
+                " | Auto Tap is Enable";
+            else if (FlxG.save.data.autoTap == false)
+                "";
+            else
+                "", 16);
         add(coinTxt);
+
+        checkText = new FlxText(5, FlxG.height - 36, 0, "", 16);
+        add(checkText);
 
         sprite = new Sprite_Game(0, 0, "button");
         sprite.screenCenter();
-        if (ResetState.in_subState == true){
-            sprite.visible = false;
-        }else{
-            sprite.visible = true;
-        }
         add(sprite);
 
         if (FlxG.sound.music == null || !FlxG.sound.music.playing) // don't restart the music if it's already playing
@@ -53,8 +56,10 @@ class PlayState extends FlxState
         super.update(elapsed);
 
         coinTxt.text = "Coin: " + FlxG.save.data.coin + 
-        if (FlxG.save.data.autoTap == 1) 
+        if (FlxG.save.data.autoTap == true) 
             " | Auto Tap is Enable";
+        else if (FlxG.save.data.autoTap == false)
+            "";
         else
             "";
 
@@ -117,6 +122,7 @@ class PlayState extends FlxState
             // #else
             // trace('you do not have dev mode enabled');
             // #end
+            // so like hack system
             #if macro
             if (@:privateAccess Macros.getDefine('dev mode')){//I'm too lazy
                 FlxG.save.data.coin += 9999;
@@ -156,6 +162,17 @@ class PlayState extends FlxState
             trace('platform does not support dev mode');
             #end
         }
+
+        var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
+
+        if (gamepad == null){
+            // trace("No controller detected!");
+            checkText.text = "";
+		} else {
+            // trace("Controller detected!, read controller.txt file");
+            checkText.text = "Controller detected!";
+			getControls(gamepad);
+		}
     }
 
     inline function autoTap(enabled:Bool = false):Bool
@@ -164,9 +181,38 @@ class PlayState extends FlxState
         return enabled;
     }
 
-    public function destory(){
-        if (FlxG.sound.music != null){
-            FlxG.sound.music.stop();
+    public static function getControls(gamepad:FlxGamepad) {
+        if (gamepad.justPressed.X 
+            || gamepad.justPressed.Y 
+            || gamepad.justPressed.A 
+            || gamepad.justPressed.B 
+            || gamepad.justPressed.LEFT_STICK_CLICK 
+            || gamepad.justPressed.RIGHT_STICK_CLICK
+        ){
+            sprite.animation.play('tap');
+
+            if (FlxG.save.data.x2 == true)
+                FlxG.save.data.coin += 2;
+            else
+                FlxG.save.data.coin++;
+
+            FlxG.save.flush();
         }
-    }
+
+        if (gamepad.justPressed.START){
+            trace('wellcome');
+
+            FlxG.switchState(new StoreState());
+
+            if (FlxG.sound.music != null){
+                FlxG.sound.music.stop();
+            }
+
+            FlxG.save.flush();
+
+            if (FlxG.sound.music != null){
+                FlxG.sound.music.stop();
+            }
+        }
+	}
 }

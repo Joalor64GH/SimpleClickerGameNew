@@ -1,5 +1,6 @@
 package;
 
+import flixel.input.gamepad.FlxGamepad;
 import flixel.util.FlxTimer;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.FlxG;
@@ -11,17 +12,21 @@ using StringTools;
 
 class StoreState extends FlxState
 {
-    var item:Array<String> = [
+    public static var item:Array<String> = [
         'X2', 'Auto Tap'
         , 'Back'
     ];
 
-    var grpitem:FlxTypedGroup<FlxText>;
-    var select:Int = 0;
-    var human:Sprite_Game;
-    var details:Sprite_Game;
-    var coinTxt:FlxText;
-    var coin_details:Sprite_Game;
+    public static var have_gamePad:Bool = false;
+
+    public static var grpitem:FlxTypedGroup<FlxText>;
+    public static var select:Int = 0;
+    public static var human:Sprite_Game;
+    public static var details:Sprite_Game;
+    public static var coinTxt:FlxText;
+    public static var coin_details:Sprite_Game;
+
+    static var checkText:FlxText;
 
     override function create()
     {
@@ -57,6 +62,9 @@ class StoreState extends FlxState
 
         coinTxt = new FlxText(5, FlxG.height - 18, 0, "Coin: " + FlxG.save.data.coin, 16);
         add(coinTxt);
+
+        checkText = new FlxText(5, FlxG.height - 36, 0, "", 16);
+        add(checkText);
 
 		grpitem = new FlxTypedGroup<FlxText>();
 		add(grpitem);
@@ -95,9 +103,31 @@ class StoreState extends FlxState
         }
     }*/
 
-    function controls()
+    public static function controls()
     {
-        if (FlxG.keys.justPressed.UP){
+        var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
+
+        if (gamepad == null){
+            // trace("No controller detected!");
+            checkText.text = "";
+            have_gamePad = false;
+		} else {
+            // trace("Controller detected!, read controller.txt file");
+            checkText.text = "Controller detected!";
+			// getControls(gamepad);
+            have_gamePad = true;
+		}
+
+        if (have_gamePad == true && gamepad.justPressed.B){
+            FlxG.save.flush();
+            FlxG.switchState(new PlayState());
+
+            if (FlxG.sound.music != null){
+                FlxG.sound.music.stop();
+            }
+        }
+
+        if (FlxG.keys.justPressed.UP || have_gamePad == true && gamepad.justPressed.DPAD_UP || have_gamePad == true && gamepad.justPressed.LEFT_STICK_DIGITAL_DOWN){
             select -= 1;
             switch(item[select])
             {
@@ -118,7 +148,7 @@ class StoreState extends FlxState
             }
         }
 			
-		if (FlxG.keys.justPressed.DOWN){
+		if (FlxG.keys.justPressed.DOWN || have_gamePad == true && gamepad.justPressed.DPAD_DOWN || have_gamePad == true && gamepad.justPressed.LEFT_STICK_DIGITAL_UP){
             select += 1;
             switch(item[select])
             {
@@ -145,7 +175,7 @@ class StoreState extends FlxState
 		if (select >= grpitem.length)
 			select = 0;
 
-        if (FlxG.keys.justPressed.ENTER)
+        if (FlxG.keys.justPressed.ENTER || have_gamePad == true && gamepad.justPressed.X || have_gamePad == true && gamepad.justPressed.LEFT_STICK_CLICK)
         {
             switch(item[select])
             {
@@ -211,7 +241,7 @@ class StoreState extends FlxState
         }
     }
 
-    function open_store()
+    public static function open_store()
     {
         switch(item[select])
         {
@@ -238,7 +268,7 @@ class StoreState extends FlxState
         }        
     }
 
-    function buy_animation() 
+    public static function buy_animation() 
     {
         coin_details.animation.play("buy!");
         coin_details.color = 0x09FF00;
@@ -275,7 +305,7 @@ class StoreState extends FlxState
         });
     }
 
-    function didnt_have_much_money()
+    public static function didnt_have_much_money()
     {
         coin_details.animation.play("dont_much_money!");
         coin_details.color = 0xBB0000;
