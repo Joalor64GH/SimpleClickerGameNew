@@ -25,7 +25,7 @@ class OptionsState extends FlxState {
             changeOption(-1);
         }
 
-        inline private function changeOption(option:Int){
+        inline private function changeOption(option:Int):Void{
             selectedOption += option;
 
             if (selectedOption > optionsCategory.length){
