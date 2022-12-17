@@ -7,12 +7,6 @@ using StringTools;
 
 class SystemData
 {
-    public static var ownItem:Bool = true;
-
-    public function new(){
-
-    }
-
     public static inline function stringFile(path:String):String
     {
         var fileAssets:String = Assets.getText(path).trim();

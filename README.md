@@ -3,7 +3,7 @@ A game just clicker the sprite
 
 earn coin
 
-upgrade the sprite
+upgrade the sprite (in progress, first release will not have this item)
 
 again click them
 

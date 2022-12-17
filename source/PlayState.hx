@@ -29,17 +29,7 @@ class PlayState extends FlxState
         }
         add(text);
 
-        coinTxt = new FlxText(5, FlxG.height - 18, 0, "Coin: " + FlxG.save.data.coin +
-        if (FlxG.save.data.autoTap) 
-            " | Auto Tap is Enable";
-        else
-            "", 16);
-        if (ResetState.in_subState == true){
-            coinTxt.visible = false;
-        }else{
-            coinTxt.visible = true;
-        }
-
+        coinTxt = new FlxText(5, FlxG.height - 18, 0, "Coin: " + FlxG.save.data.coin, 16);
         add(coinTxt);
 
         sprite = new Sprite_Game(0, 0, "button");
@@ -51,7 +41,7 @@ class PlayState extends FlxState
         }
         add(sprite);
 
-        if (FlxG.sound.music == null) // don't restart the music if it's already playing
+        if (FlxG.sound.music == null || !FlxG.sound.music.playing) // don't restart the music if it's already playing
         {
             // idk should we add more then one song??
             FlxG.sound.playMusic(Paths.music('buttonClicker'), 1, true);
@@ -82,7 +72,13 @@ class PlayState extends FlxState
 
         if (store)
         {
+            trace('wellcome');
+
             FlxG.switchState(new StoreState());
+
+            if (FlxG.sound.music != null){
+                FlxG.sound.music.stop();
+            }
 
             FlxG.save.flush();
 
@@ -111,6 +107,26 @@ class PlayState extends FlxState
             //FlxG.sound.play(Paths.sound('resetSound'), 1);
 
             openSubState(new ResetState());
+        }
+
+        if (devThing){
+            // #if sys
+            // if (Sys.args().contains('dev mode')){
+            //     FlxG.save.data.coin += 9999;
+            // }
+            // #else
+            // trace('you do not have dev mode enabled');
+            // #end
+            #if macro
+            if (@:privateAccess Macros.getDefine('dev mode')){//I'm too lazy
+                FlxG.save.data.coin += 9999;
+            }
+            else {
+                trace('you do not have dev mode enabled');
+            }
+            #else
+            trace('platform does not support dev mode');
+            #end
         }
 
         if (FlxG.save.data.autoTap == true){
@@ -147,53 +163,10 @@ class PlayState extends FlxState
         //loop forever
         return enabled;
     }
-}
 
-class ResetState extends FlxSubState
-{
-    var text:FlxText;
-
-    public static var in_subState:Bool = false;
-    public static var reset_data:Bool = false;
-
-    public function new()
-    {
-        super();
-
-        in_subState = true;
-
-        text = new FlxText(0, 0, 0, 
-            "ARE YOU SURE TO RESET ALL DATA??\nPress Enter to reset\nPress Esc to return", 16
-        );
-        text.setFormat(FlxAssets.FONT_DEFAULT, 16, FlxColor.WHITE, CENTER);
-        text.screenCenter();
-        add(text);
-    }
-
-    override public function update(elapsed:Float)
-    {
-        super.update(elapsed);
-
-        if (FlxG.keys.justPressed.ENTER)
-        {
-            FlxG.save.data.coin = 0;
-            FlxG.save.data.autoTap = false;
-            FlxG.save.data.x2 = false;
-            SystemData.ownItem == false;
-            reset_data == true;
-
-            FlxG.sound.play(Paths.sound('resetSound'), 1);
-
-            in_subState = false;
-            
-            close();
-        }
-
-        if (FlxG.keys.justPressed.ESCAPE)
-        {
-            in_subState = false;
-
-            close();
+    public function destory(){
+        if (FlxG.sound.music != null){
+            FlxG.sound.music.stop();
         }
     }
 }

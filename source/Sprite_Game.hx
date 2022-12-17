@@ -96,23 +96,6 @@ class Sprite_Game extends FlxSprite
 
         playAnimation('idle');
         animation.play('idle');
-
-        if (thank_buy == true){
-            switch(sprite){
-                case "shop":
-                    animation.play('thank_for_buy');
-            }
-        }
-
-        if (dont_much_coin == true){
-            switch(sprite){
-                case "shop":
-                    animation.play('dont_much_money_i_want');
-            }
-        }
-    }
-
-    inline public function playAnimation(name:String, ?forced:Bool, ?reverse:Bool, ?frame:Int):Void{
-        animation.play(name, forced, reverse, frame);
+        // }
     }
 }
