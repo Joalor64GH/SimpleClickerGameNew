@@ -59,10 +59,10 @@ class PlayState extends FlxState
         var reset = FlxG.keys.justPressed.R;
         var devThing = FlxG.keys.justPressed.L;
 
-        // if (options)
-        // {
-        //     FlxG.switchState(new OptionsState());
-        // }
+        if (options)
+        {
+            FlxG.switchState(new OptionsState());
+        }
 
         if (store)
         {
