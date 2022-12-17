@@ -1,10 +1,10 @@
 package;
 
-import flixel.text.FlxText;
-import flixel.FlxState;
-import flixel.FlxG;
+import flixel.util.FlxColor;
+import flixel.system.FlxAssets;
 import flixel.tweens.FlxTween;
-import flixel.tweens.FlxEase;
+import flixel.text.FlxText;
+import flixel.*;
 
 class PlayState extends FlxState
 {
@@ -22,13 +22,33 @@ class PlayState extends FlxState
 
         var text = new FlxText(0, 0, 0, "Simple Clicker Game", 32);
         text.screenCenter(X);
+        if (ResetState.in_subState == true){
+            text.visible = false;
+        }else{
+            text.visible = true;
+        }
         add(text);
 
-        coinTxt = new FlxText(5, FlxG.height - 18, 0, "Coin: " + FlxG.save.data.coin, 16);
+        coinTxt = new FlxText(5, FlxG.height - 18, 0, "Coin: " + FlxG.save.data.coin +
+        if (FlxG.save.data.autoTap) 
+            " | Auto Tap is Enable";
+        else
+            "", 16);
+        if (ResetState.in_subState == true){
+            coinTxt.visible = false;
+        }else{
+            coinTxt.visible = true;
+        }
+
         add(coinTxt);
 
         sprite = new Sprite_Game(0, 0, "button");
         sprite.screenCenter();
+        if (ResetState.in_subState == true){
+            sprite.visible = false;
+        }else{
+            sprite.visible = true;
+        }
         add(sprite);
 
         if (FlxG.sound.music == null) // don't restart the music if it's already playing
@@ -42,13 +62,18 @@ class PlayState extends FlxState
     {
         super.update(elapsed);
 
-        coinTxt.text = "Coin: " + FlxG.save.data.coin;
+        coinTxt.text = "Coin: " + FlxG.save.data.coin + 
+        if (FlxG.save.data.autoTap == 1) 
+            " | Auto Tap is Enable";
+        else
+            "";
 
         var options = FlxG.keys.justPressed.Q;
         var press = FlxG.keys.justPressed.ENTER;
         var press_alt = FlxG.keys.justPressed.SPACE;
         var store = FlxG.keys.justPressed.S;
         var reset = FlxG.keys.justPressed.R;
+        var devThing = FlxG.keys.justPressed.L;
 
         // if (options)
         // {
@@ -60,13 +85,17 @@ class PlayState extends FlxState
             FlxG.switchState(new StoreState());
 
             FlxG.save.flush();
+
+            if (FlxG.sound.music != null){
+                FlxG.sound.music.stop();
+            }
         }
 
         if (press || press_alt || FlxG.mouse.overlaps(sprite) && FlxG.mouse.justPressed || autoTap() && FlxG.elapsed % 2 == 0)
         {
             sprite.animation.play('tap');
 
-            if (FlxG.save.data.x2 == 1)
+            if (FlxG.save.data.x2 == true)
                 FlxG.save.data.coin += 2;
             else
                 FlxG.save.data.coin++;
@@ -75,18 +104,41 @@ class PlayState extends FlxState
         }
 
         if (reset){
-            FlxG.save.data.coin = 0;
-            FlxG.save.data.autoTap = 0;
-            FlxG.save.data.x2 = 0;
+            //FlxG.save.data.coin = 0;
+            //FlxG.save.data.autoTap = 0;
+            //FlxG.save.data.x2 = 0;
 
-            FlxG.sound.play(Paths.sound('resetSound'), 1);
+            //FlxG.sound.play(Paths.sound('resetSound'), 1);
+
+            openSubState(new ResetState());
         }
 
-        if (FlxG.save.data.autoTap == 1){
+        if (FlxG.save.data.autoTap == true){
             autoTap(true);
         }
         else {
             autoTap(false);
+        }
+
+        if (devThing){
+            // #if sys
+            // if (Sys.args().contains('dev mode')){
+            //     FlxG.save.data.coin += 9999;
+            // }
+            // #else
+            // trace('you do not have dev mode enabled');
+            // #end
+            #if macro
+            if (@:privateAccess Macros.getDefine('dev mode')){//I'm too lazy
+                FlxG.save.data.coin += 9999;
+                trace('dev mode enable');
+            }
+            else {
+                trace('you do not have dev mode enabled');
+            }
+            #else
+            trace('platform does not support dev mode');
+            #end
         }
     }
 
@@ -95,10 +147,53 @@ class PlayState extends FlxState
         //loop forever
         return enabled;
     }
+}
 
-    public function destory(){
-        if (FlxG.sound.music != null){
-            FlxG.sound.music.stop();
+class ResetState extends FlxSubState
+{
+    var text:FlxText;
+
+    public static var in_subState:Bool = false;
+    public static var reset_data:Bool = false;
+
+    public function new()
+    {
+        super();
+
+        in_subState = true;
+
+        text = new FlxText(0, 0, 0, 
+            "ARE YOU SURE TO RESET ALL DATA??\nPress Enter to reset\nPress Esc to return", 16
+        );
+        text.setFormat(FlxAssets.FONT_DEFAULT, 16, FlxColor.WHITE, CENTER);
+        text.screenCenter();
+        add(text);
+    }
+
+    override public function update(elapsed:Float)
+    {
+        super.update(elapsed);
+
+        if (FlxG.keys.justPressed.ENTER)
+        {
+            FlxG.save.data.coin = 0;
+            FlxG.save.data.autoTap = false;
+            FlxG.save.data.x2 = false;
+            SystemData.ownItem == false;
+            reset_data == true;
+
+            FlxG.sound.play(Paths.sound('resetSound'), 1);
+
+            in_subState = false;
+            
+            close();
+        }
+
+        if (FlxG.keys.justPressed.ESCAPE)
+        {
+            in_subState = false;
+
+            close();
         }
     }
 }
