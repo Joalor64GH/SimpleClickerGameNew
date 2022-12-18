@@ -3,19 +3,26 @@ package;
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.text.FlxText;
+import flixel.util.FlxColor;
+import flixel.group.FlxGroup.FlxTypedGroup;
 
 class OptionsState extends FlxState {
-    public var optionsCategorys:Array<String> = ['Gameplay', 'Visuals', 'Audio', 'Misc', 'Back'];
+    public final optionsCategorys:Array<String> = ['Gameplay', 'Visuals', 'Audio', 'Misc', 'Back'];
 
     public var optionsText:FlxText;
 
     public var selectedOption:Int = 0;
 
+    public var textGroup:FlxTypedGroup<FlxText>;
+
     override function create(){
-        for (i in optionsCategorys.length){
+        textGroup = new FlxTypedGroup<FlxText>();
+
+        for (i in 0...optionsCategorys.length){
             optionsText = new FlxText(0, 100, 0, optionsCategorys[i], 32);
             optionsText.screenCenter(X);
             add(optionsText);
+            textGroup.add(optionsText);
         }
 
         if (FlxG.keys.justPressed.S || FlxG.keys.justPressed.DOWN){
@@ -40,12 +47,13 @@ class OptionsState extends FlxState {
     }
 
     override function update(elapsed:Float){
-        if (optionsCategorys.length = selectedOption){
-            optionsText.color = flixel.util.FlxColor.GREEN;
-        }
-        else {
-            optionsText.color = flixel.util.FlxColor.WHITE;
-        }
+		textGroup.forEach(function(txt:FlxText)
+        {
+            txt.color = FlxColor.WHITE;
+    
+            if (txt.ID == selectedOption)
+                txt.color = FlxColor.YELLOW;
+        });
 
         super.update(elapsed);
     }
