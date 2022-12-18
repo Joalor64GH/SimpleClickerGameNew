@@ -73,6 +73,8 @@ class PlayState extends FlxState
         if (options)
         {
             FlxG.switchState(new OptionsState());
+
+            FlxG.save.flush();
         }
 
         if (store)
@@ -209,6 +211,12 @@ class PlayState extends FlxState
             if (FlxG.sound.music != null){
                 FlxG.sound.music.stop();
             }
+        }
+
+        if (gamepad.justPressed.RIGHT_TRIGGER){
+            FlxG.switchState(new OptionsState());
+
+            FlxG.save.flush();
         }
 	}
 }
