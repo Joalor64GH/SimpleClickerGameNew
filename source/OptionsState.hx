@@ -57,6 +57,11 @@ class OptionsState extends FlxState {
             changeOption(-1);
         }
 
+        if (FlxG.keys.justPressed.ESCAPE){
+            FlxG.switchState(new PlayState());
+            FlxG.save.flush();
+        }
+
         var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 
         if (gamepad == null){
@@ -83,7 +88,8 @@ class OptionsState extends FlxState {
         }
 
         if (gamepad.justPressed.BACK){
-
+            FlxG.switchState(new PlayState());
+            FlxG.save.flush();
         }    
 	}
 }
