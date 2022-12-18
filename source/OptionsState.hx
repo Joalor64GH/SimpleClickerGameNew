@@ -5,14 +5,14 @@ import flixel.FlxState;
 import flixel.text.FlxText;
 
 class OptionsState extends FlxState {
-    public final optionsCategorys:Array<String> = ['Gameplay', 'Visuals', 'Audio', 'Misc', 'Back'];
+    public var optionsCategorys:Array<String> = ['Gameplay', 'Visuals', 'Audio', 'Misc', 'Back'];
 
     public var optionsText:FlxText;
 
     public var selectedOption:Int = 0;
 
     override function create(){
-        for (i in optionsCategorys){
+        for (i in optionsCategorys.length){
             optionsText = new FlxText(0, 100, 0, optionsCategorys[i], 32);
             optionsText.screenCenter(X);
             add(optionsText);
