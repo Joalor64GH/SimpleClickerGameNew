@@ -12,7 +12,7 @@ class OptionsState extends FlxState {
     public var selectedOption:Int = 0;
 
     override function create(){
-        for (i in optionsCategory){
+        for (i in optionsCategorys){
             optionsText = new FlxText(0, 100, 0, optionsCategorys[i], 32);
             optionsText.screenCenter(X);
             add(optionsText);
@@ -31,7 +31,7 @@ class OptionsState extends FlxState {
     private function changeOption(option:Int):Void{
         selectedOption += option;
 
-        if (selectedOption > optionsCategory.length){
+        if (selectedOption > optionsCategorys.length){
             selectedOption = 5;
         }
         if (selectedOption < 0){
@@ -40,7 +40,7 @@ class OptionsState extends FlxState {
     }
 
     override function update(elapsed:Float){
-        if (optionsCategory.length = selectedOption){
+        if (optionsCategorys.length = selectedOption){
             optionsText.color = flixel.util.FlxColor.GREEN;
         }
         else {
