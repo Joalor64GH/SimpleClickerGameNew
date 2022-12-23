@@ -49,6 +49,8 @@ class PlayState extends FlxState
             // idk should we add more then one song??
             FlxG.sound.playMusic(Paths.music('buttonClicker'), 1, true);
         }
+
+        FlxG.signals.preStateSwitch.add(destroy);
     }
 
     override public function update(elapsed:Float)
@@ -219,4 +221,14 @@ class PlayState extends FlxState
             FlxG.save.flush();
         }
 	}
+
+    public function destory(){
+        sprite = null;
+        coinTxt = null;
+        checkText = null;
+        sprite_tween = null;
+        // gamepad = null;
+
+        FlxG.signals.preStateSwitch.remove(destroy);
+    }
 }
