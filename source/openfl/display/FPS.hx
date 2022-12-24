@@ -52,7 +52,7 @@ class FPS extends TextField
 		currentTime = 0;
 		times = [];
 
-		#if !flash
+		#if flash
 		addEventListener(Event.ENTER_FRAME, function(e)
 		{
 			var time = Lib.getTimer();
