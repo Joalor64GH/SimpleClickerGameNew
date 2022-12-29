@@ -1,4 +1,9 @@
 # Simple Clicker Game
+
+## Size
+![Repo size](https://img.shields.io/github/repo-size/Hoovy-Team/Simple-Clicker-Game)
+
+## About
 A game just clicker the sprite
 
 earn coin
