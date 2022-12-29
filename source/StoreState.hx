@@ -6,6 +6,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.FlxG;
 import flixel.util.FlxColor;
 import flixel.FlxState;
+import lime.app.Application;
 import flixel.text.FlxText;
 
 using StringTools;
@@ -92,16 +93,21 @@ class StoreState extends FlxState
                 txt.color = FlxColor.YELLOW;
         });
         controls();
-        // talk_npc();
-    }
-
-    /*function talk_npc()
-    {
         if (FlxG.mouse.overlaps(human) && FlxG.mouse.justPressed)
         {
-            human.animation.play('talk');
+            talk_npc();
         }
-    }*/
+    }
+
+    function talk_npc()
+    {
+       // human.animation.play('talk');
+       human.playAnimation("talk");
+       new FlxTimer().start(2, function(tmr:FlxTimer) 
+        {
+            human.playAnimation("idle");
+        });
+    }
 
     public static function controls()
     {
@@ -113,12 +119,13 @@ class StoreState extends FlxState
             have_gamePad = false;
 		} else {
             // trace("Controller detected!, read controller.txt file");
-            checkText.text = "Controller detected!";
-			// getControls(gamepad);
+            // checkText.text = "Controller detected!";
+			Application.current.window.title = "Simple Clicker Game - Controller detected!";
+            // getControls(gamepad);
             have_gamePad = true;
 		}
 
-        if (have_gamePad == true && gamepad.justPressed.B){
+        if (FlxG.keys.justPressed.ESCAPE || have_gamePad == true && gamepad.justPressed.BACK){
             FlxG.save.flush();
             FlxG.switchState(new PlayState());
 
@@ -127,7 +134,12 @@ class StoreState extends FlxState
             }
         }
 
-        if (FlxG.keys.justPressed.UP || have_gamePad == true && gamepad.justPressed.DPAD_UP || have_gamePad == true && gamepad.justPressed.LEFT_STICK_DIGITAL_DOWN){
+        if (FlxG.keys.justPressed.W 
+            || FlxG.keys.justPressed.UP 
+            || have_gamePad == true && gamepad.justPressed.DPAD_UP 
+            || have_gamePad == true && gamepad.justPressed.LEFT_STICK_DIGITAL_UP 
+            || have_gamePad == true && gamepad.justPressed.RIGHT_STICK_DIGITAL_UP)
+        {
             select -= 1;
             switch(item[select])
             {
@@ -148,7 +160,12 @@ class StoreState extends FlxState
             }
         }
 			
-		if (FlxG.keys.justPressed.DOWN || have_gamePad == true && gamepad.justPressed.DPAD_DOWN || have_gamePad == true && gamepad.justPressed.LEFT_STICK_DIGITAL_UP){
+		if (FlxG.keys.justPressed.S 
+            || FlxG.keys.justPressed.DOWN 
+            || have_gamePad == true && gamepad.justPressed.DPAD_DOWN 
+            || have_gamePad == true && gamepad.justPressed.LEFT_STICK_DIGITAL_DOWN 
+            || have_gamePad == true && gamepad.justPressed.RIGHT_STICK_DIGITAL_DOWN)
+        {
             select += 1;
             switch(item[select])
             {
@@ -175,7 +192,7 @@ class StoreState extends FlxState
 		if (select >= grpitem.length)
 			select = 0;
 
-        if (FlxG.keys.justPressed.ENTER || have_gamePad == true && gamepad.justPressed.X || have_gamePad == true && gamepad.justPressed.LEFT_STICK_CLICK)
+        if (FlxG.keys.justPressed.ENTER || have_gamePad == true && gamepad.justPressed.X)
         {
             switch(item[select])
             {
@@ -191,7 +208,7 @@ class StoreState extends FlxState
                         trace('not have much money we want');
                         SystemData.ownItem == false;
                         didnt_have_much_money();
-                    }else if (FlxG.save.data.coin == 200 || SystemData.ownItem == false)
+                    }else if (FlxG.save.data.coin > 200 || FlxG.save.data.coin == 200 || SystemData.ownItem == false)
                     {
                         trace('x2 active!');
                         FlxG.save.data.coin -= 200;
@@ -199,7 +216,7 @@ class StoreState extends FlxState
                         SystemData.ownItem == true;
                         buy_animation();
                     }
-                    else if (SystemData.ownItem == true) //when you already buy that item
+                    else if (SystemData.ownItem == true)
                     {
                         if (FlxG.save.data.x2 == true){
                             trace('x2 Unactive!');
@@ -216,7 +233,7 @@ class StoreState extends FlxState
 
                 case "Auto Tap":
                     // unfinsished, tested
-                    if (FlxG.save.data.coin < 400){
+                    /*if (FlxG.save.data.coin < 400){
                         trace('not have much money we want');
                         didnt_have_much_money();
                     }else if (FlxG.save.data.coin == 400){
@@ -228,6 +245,40 @@ class StoreState extends FlxState
                         trace('x2 active!');
                         FlxG.save.data.coin -= 0;
                         FlxG.save.data.autoTap++;
+                    }*/
+
+                    if (FlxG.save.data.coin < 400 || SystemData.ownItem == false)
+                    {
+                        trace('not have much money we want');
+                        SystemData.ownItem == false;
+                        didnt_have_much_money();
+                    }
+                    else if (FlxG.save.data.coin < 400 || SystemData.ownItem == false)
+                    {
+                        trace('not have much money we want');
+                        SystemData.ownItem == false;
+                        didnt_have_much_money();
+                    }else if (FlxG.save.data.coin <= 400 || SystemData.ownItem == false)
+                    {
+                        trace('x2 active!');
+                        FlxG.save.data.coin -= 400;
+                        FlxG.save.data.autoTap = true;
+                        SystemData.ownItem == true;
+                        buy_animation();
+                    }
+                    else if (SystemData.ownItem == true) //when you already buy that item
+                    {
+                        if (FlxG.save.data.autoTap == true){
+                            trace('autoTap Unactive!');
+                            FlxG.save.data.coin -= 0;
+                            FlxG.save.data.autoTap = false;
+                            SystemData.ownItem == true;
+                        }else if (FlxG.save.data.autoTap == false) {
+                            trace('autoTap active!');
+                            FlxG.save.data.coin -= 0;
+                            FlxG.save.data.autoTap = true;
+                            SystemData.ownItem == true;
+                        }
                     }
 
                 case "Back":
@@ -275,7 +326,7 @@ class StoreState extends FlxState
 
         human.animation.play('thank_for_buy');
         
-        new FlxTimer().start(1, function(tmr:FlxTimer) {
+        new FlxTimer().start(2, function(tmr:FlxTimer) {
             switch(item[select])
             {
                 case "X2":
@@ -312,7 +363,7 @@ class StoreState extends FlxState
 
         human.animation.play('dont_much_money_i_want');
         
-        new FlxTimer().start(1, function(tmr:FlxTimer) {
+        new FlxTimer().start(2, function(tmr:FlxTimer) {
             switch(item[select])
             {
                 case "X2":

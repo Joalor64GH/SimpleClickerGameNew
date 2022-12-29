@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="like_game.png">
+	<!-- Created with Adobe Animate version 20.0.2.22168 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="like_game0000" x="0" y="0" width="67" height="57"/>
+	<SubTexture name="like_game0001" x="0" y="0" width="67" height="57"/>
+	<SubTexture name="like_game0002" x="0" y="0" width="67" height="57"/>
+	<SubTexture name="like_game0003" x="0" y="0" width="67" height="57"/>
+	<SubTexture name="like_game0004" x="0" y="0" width="67" height="57"/>
+	<SubTexture name="like_game0005" x="0" y="0" width="67" height="57"/>
+	<SubTexture name="like_game0006" x="0" y="0" width="67" height="57"/>
+	<SubTexture name="like_game0007" x="0" y="0" width="67" height="57"/>
+	<SubTexture name="like_game0008" x="0" y="0" width="67" height="57"/>
+	<SubTexture name="like_game0009" x="67" y="0" width="67" height="57"/>
+	<SubTexture name="like_game0010" x="67" y="0" width="67" height="57"/>
+	<SubTexture name="like_game0011" x="134" y="0" width="67" height="57"/>
+	<SubTexture name="like_game0012" x="134" y="0" width="67" height="57"/>
+	<SubTexture name="like_game0013" x="0" y="57" width="67" height="57"/>
+	<SubTexture name="like_game0014" x="0" y="57" width="67" height="57"/>
+	<SubTexture name="like_game0015" x="67" y="57" width="67" height="57"/>
+	<SubTexture name="like_game0016" x="67" y="57" width="67" height="57"/>
+	<SubTexture name="like_game0017" x="134" y="57" width="67" height="57"/>
+	<SubTexture name="like_game0018" x="134" y="57" width="67" height="57"/>
+	<SubTexture name="like_game0019" x="0" y="114" width="67" height="57"/>
+	<SubTexture name="like_game0020" x="67" y="114" width="67" height="57"/>
+	<SubTexture name="like_game0021" x="0" y="0" width="67" height="57"/>
+	<SubTexture name="like_game0022" x="0" y="0" width="67" height="57"/>
+	<SubTexture name="like_game0023" x="0" y="0" width="67" height="57"/>
+	<SubTexture name="like_game0024" x="0" y="0" width="67" height="57"/>
+</TextureAtlas>

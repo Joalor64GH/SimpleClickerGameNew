@@ -43,6 +43,8 @@ class Sprite_Game extends FlxSprite
 
     /**
         * Enter your sprite name
+
+        * E.g sprite name is `button`
     **/
     public var sprite:String = 'button';
 
@@ -55,7 +57,7 @@ class Sprite_Game extends FlxSprite
             case "button":
                 frames = Paths.getSparrowAtlas('sprite');
                 animation.addByPrefix('idle', 'normal', 1, false);
-                animation.addByPrefix('tap', 'press', 6, false);
+                animation.addByPrefix('tap', 'press', 48, false);
                 antialiasing = true;
                 non_idle = false;
 
@@ -87,6 +89,10 @@ class Sprite_Game extends FlxSprite
                 animation.addByPrefix('dont_much_money!', 'dont_have_much_money', 16, false);
                 antialiasing = true;
                 non_idle = true;
+
+            case "load_sprite": //when there only have 1 frame or only png
+                loadGraphic(Paths.image("please_wait_human"));
+                antialiasing = true;
         }
     }
 
@@ -94,8 +100,7 @@ class Sprite_Game extends FlxSprite
     {
         super.update(elapsed);
 
-        playAnimation('idle');
-        // }
+        // playAnimation('idle');
     }
 
     inline public function playAnimation(name:String, ?forced:Bool, ?reverse:Bool, ?frame:Int):Void{

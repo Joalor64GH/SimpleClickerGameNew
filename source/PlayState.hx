@@ -1,11 +1,16 @@
 package;
 
+import SerectState;
+import lime.app.Application;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.util.FlxColor;
 import flixel.system.FlxAssets;
+import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.text.FlxText;
 import flixel.*;
+import flixel.ui.*;
+import flixel.input.mouse.FlxMouse;
 
 class PlayState extends FlxState
 {
@@ -16,9 +21,16 @@ class PlayState extends FlxState
     public static var coinTxt:FlxText;
     var checkText:FlxText;
 
+    var bg:FlxSprite;
+
     override public function create()
     {
         super.create();
+
+        bg = new FlxSprite();
+        bg.makeGraphic(800, 600, FlxColor.CYAN);
+        bg.screenCenter();
+        add(bg);
 
         SystemData.coin(); //when first playing, number of coin are null
         SystemData.saveData();
@@ -55,6 +67,9 @@ class PlayState extends FlxState
     {
         super.update(elapsed);
 
+        FlxTween.color(bg, 1, 0x006EFF, 0x550404,
+			{type: FlxTweenType.PINGPONG, ease: FlxEase.sineInOut});
+
         coinTxt.text = "Coin: " + FlxG.save.data.coin + 
         if (FlxG.save.data.autoTap == true) 
             " | Auto Tap is Enable";
@@ -69,6 +84,20 @@ class PlayState extends FlxState
         var store = FlxG.keys.justPressed.S;
         var reset = FlxG.keys.justPressed.R;
         var devThing = FlxG.keys.justPressed.L;
+        var mod = FlxG.keys.justPressed.F1;
+        var sercet = FlxG.keys.justPressed.F12;
+
+        if (sercet)
+        {
+            FlxG.switchState(new SercetState());
+        }
+
+        if (mod)
+        {
+            FlxG.switchState(new ModState());
+
+            FlxG.save.flush();
+        }
 
         if (options)
         {
@@ -102,8 +131,8 @@ class PlayState extends FlxState
 
         if (reset){
             FlxG.save.data.coin = 0;
-            FlxG.save.data.autoTap = 0;
-            FlxG.save.data.x2 = 0;
+            FlxG.save.data.autoTap = false;
+            FlxG.save.data.x2 = false;
             SystemData.ownItem = false; 
             FlxG.sound.play(Paths.sound('resetSound'), 1);
 
@@ -138,27 +167,6 @@ class PlayState extends FlxState
             autoTap(false);
         }
 
-        if (devThing){
-            // #if sys
-            // if (Sys.args().contains('dev mode')){
-            //     FlxG.save.data.coin += 9999;
-            // }
-            // #else
-            // trace('you do not have dev mode enabled');
-            // #end
-            #if macro
-            if (@:privateAccess Macros.getDefine('dev mode')){//I'm too lazy
-                FlxG.save.data.coin += 9999;
-                trace('dev mode enable');
-            }
-            else {
-                trace('you do not have dev mode enabled');
-            }
-            #else
-            trace('platform does not support dev mode');
-            #end
-        }
-
         var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 
         if (gamepad == null){
@@ -166,7 +174,8 @@ class PlayState extends FlxState
             checkText.text = "";
 		} else {
             // trace("Controller detected!, read controller.txt file");
-            checkText.text = "Controller detected!";
+            // checkText.text = "Controller detected!";
+            Application.current.window.title = "Simple Clicker Game - Controller detected!";
 			getControls(gamepad);
 		}
     }
@@ -185,7 +194,8 @@ class PlayState extends FlxState
             || gamepad.justPressed.LEFT_STICK_CLICK 
             || gamepad.justPressed.RIGHT_STICK_CLICK
         ){
-            sprite.animation.play('tap');
+            // sprite.animation.play('tap');
+            sprite.playAnimation("tap");
 
             if (FlxG.save.data.x2 == true)
                 FlxG.save.data.coin += 2;
@@ -193,6 +203,33 @@ class PlayState extends FlxState
                 FlxG.save.data.coin++;
 
             FlxG.save.flush();
+        }
+
+        if (gamepad.justPressed.BACK){
+            FlxG.switchState(new ModState());
+
+            FlxG.save.flush();
+        }
+
+        if (gamepad.justPressed.RIGHT_SHOULDER){
+            FlxG.save.data.coin = 0;
+            FlxG.save.data.autoTap = 0;
+            FlxG.save.data.x2 = 0;
+            SystemData.ownItem = false; 
+            FlxG.sound.play(Paths.sound('resetSound'), 1);
+        }
+
+        if (gamepad.justPressed.LEFT_SHOULDER){
+            #if macro
+            if (@:privateAccess Macros.getDefine('dev mode')){//I'm too lazy
+                FlxG.save.data.coin += 9999;
+            }
+            else {
+                trace('you do not have dev mode enabled');
+            }
+            #else
+            trace('platform does not support dev mode');
+            #end
         }
 
         if (gamepad.justPressed.START){
@@ -209,6 +246,12 @@ class PlayState extends FlxState
             if (FlxG.sound.music != null){
                 FlxG.sound.music.stop();
             }
+        }
+
+        if (gamepad.justPressed.RIGHT_TRIGGER){
+            FlxG.switchState(new OptionsState());
+
+            FlxG.save.flush();
         }
 	}
 }

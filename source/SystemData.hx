@@ -5,8 +5,16 @@ import lime.utils.Assets;
 
 using StringTools;
 
+/**
+    * System Data haxe file
+
+    * for game
+**/
 class SystemData
 {
+    /**
+        * When you already buy this item
+    **/
 	public static var ownItem:Bool = false;
 
     public static inline function stringFile(path:String):String
@@ -39,7 +47,7 @@ class SystemData
             FlxG.save.data.autoTap = false;
     }
 
-    inline static public function limitNumber()
+    /*inline static public function limitNumber()
     {
         if (FlxG.save.data.x2 == 2)
         {
@@ -50,5 +58,5 @@ class SystemData
         {
             FlxG.save.data.autoTap == 0;
         }
-    }
+    }*/
 }
