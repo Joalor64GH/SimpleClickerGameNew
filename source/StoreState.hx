@@ -202,12 +202,6 @@ class StoreState extends FlxState
                         trace('not have much money we want');
                         SystemData.ownItem == false;
                         didnt_have_much_money();
-                    }
-                    else if (FlxG.save.data.coin < 200 || SystemData.ownItem == false)
-                    {
-                        trace('not have much money we want');
-                        SystemData.ownItem == false;
-                        didnt_have_much_money();
                     }else if (FlxG.save.data.coin > 200 || FlxG.save.data.coin == 200 || SystemData.ownItem == false)
                     {
                         trace('x2 active!');

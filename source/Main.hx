@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxG;
 import openfl.display.FPS;
 import flixel.FlxGame;
 import openfl.display.Sprite;
@@ -17,6 +18,9 @@ class Main extends Sprite
 	
 	public function new()
 	{
+		// FlxG.updateFramerate = FlxG.save.data.fps;
+		// FlxG.drawFramerate = FlxG.save.data.fps;
+		
 		super();
 		addChild(new FlxGame(
 			gameWidth, 
