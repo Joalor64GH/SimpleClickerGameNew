@@ -30,4 +30,3 @@ this project made by Huy1234TH
 ## **How is work??**
 
 **just like normally vs code in desktop but working in your browser**
- 
