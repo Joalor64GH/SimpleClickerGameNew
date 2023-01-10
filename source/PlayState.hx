@@ -34,7 +34,7 @@ class PlayState extends FlxState
 
         SystemData.coin(); //when first playing, number of coin are null
         SystemData.saveData();
-        // checkController();
+        
         var text = new FlxText(0, 0, 0, "Simple Clicker Game", 32);
         text.screenCenter(X);
         add(text);
@@ -89,7 +89,7 @@ class PlayState extends FlxState
         var mod = FlxG.keys.justPressed.F1;
         var sercet = FlxG.keys.justPressed.F12;
 
-        if (sercet)
+        if (sercet) //found the sercet
         {
             FlxG.switchState(new SecretState());
         }

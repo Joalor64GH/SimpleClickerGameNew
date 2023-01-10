@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxG;
 import flixel.FlxSprite;
 
 /**
@@ -52,24 +53,39 @@ class Sprite_Game extends FlxSprite
     {
         super(x_pos, y_pos);
 
+        if (FlxG.save.data.lowQuality){
+            antialiasing = false;
+        }else{
+            antialiasing = true;
+        }
+
         switch(sprite)
         {
             case "button":
                 frames = Paths.getSparrowAtlas('sprite');
                 animation.addByPrefix('idle', 'normal', 1, false);
-                animation.addByPrefix('tap', 'press', 48, false);
-                antialiasing = true;
+                if (FlxG.save.data.shitQuality){
+                    animation.addByPrefix('tap', 'normal', 1, false);
+                }else{
+                    animation.addByPrefix('tap', 'press', 48, false);
+                }
                 non_idle = false;
 
             case "shop":
                 frames = Paths.getSparrowAtlas('shop');
-                animation.addByPrefix('idle', 'shop_human0', 16, true);
-                animation.addByPrefix('talk', 'shop_human_talk0', 14, false);
-                thank_buy = true;
-                animation.addByPrefix('thank_for_buy', 'shop_human_buy0', 14, false);
-                dont_much_coin = true;
-                animation.addByPrefix('dont_much_money_i_want', 'shop_human_not_much_money_i_want0', 14, false);
-                antialiasing = true;
+                if (FlxG.save.data.shitQuality){
+                    animation.addByPrefix('idle', 'shop_human0', 1, false);
+                    animation.addByPrefix('talk', 'shop_human0', 1, false);
+                    animation.addByPrefix('thank_for_buy', 'shop_human0', 1, false);
+                    animation.addByPrefix('dont_much_money_i_want', 'shop_human0', 1, false);
+                }else{
+                    animation.addByPrefix('idle', 'shop_human0', 16, true);
+                    animation.addByPrefix('talk', 'shop_human_talk0', 14, false);
+                    thank_buy = true;
+                    animation.addByPrefix('thank_for_buy', 'shop_human_buy0', 14, false);
+                    dont_much_coin = true;
+                    animation.addByPrefix('dont_much_money_i_want', 'shop_human_not_much_money_i_want0', 14, false);    
+                }
                 non_idle = false;
 
             case "details_store":
@@ -77,7 +93,7 @@ class Sprite_Game extends FlxSprite
                 animation.addByPrefix('select_1', 'select_1', 16, false);
                 animation.addByPrefix('select_2', 'select_2', 16, false);
                 animation.addByPrefix('select_3', 'select_3', 16, false);
-                antialiasing = true;
+                
                 non_idle = true;
 
             case "coin_store":
@@ -87,12 +103,12 @@ class Sprite_Game extends FlxSprite
                 animation.addByPrefix('coin 400', 'coin_400', 16, false);
                 animation.addByPrefix('buy!', 'coin_buy!',10, false);
                 animation.addByPrefix('dont_much_money!', 'dont_have_much_money', 16, false);
-                antialiasing = true;
+                
                 non_idle = true;
 
             case "load_sprite": //when there only have 1 frame or only png
                 loadGraphic(Paths.image("please_wait_human"));
-                antialiasing = true;
+                
         }
     }
 

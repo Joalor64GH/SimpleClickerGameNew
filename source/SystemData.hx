@@ -40,11 +40,20 @@ class SystemData
 
         // limitNumber();
 
+        if (FlxG.save.data.lowQuality == null)
+            FlxG.save.data.lowQuality = false; 
+
+        if (FlxG.save.data.shitQuality == null)
+            FlxG.save.data.shitQuality = false; 
+
         if (FlxG.save.data.x2 == null)
             FlxG.save.data.x2 = false; 
 
         if (FlxG.save.data.autoTap == null)
             FlxG.save.data.autoTap = false;
+
+        if (FlxG.save.data.fps == null)
+            FlxG.save.data.fps = 60;
     }
 
     /*inline static public function limitNumber()
