@@ -6,7 +6,7 @@ import flixel.FlxG;
 import flixel.FlxState;
 import flixel.text.FlxText;
 
-class SercetState extends FlxState
+class SecretState extends FlxState
 {
     var type_text:FlxInputText;
     override function create() 

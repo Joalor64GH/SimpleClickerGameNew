@@ -1,6 +1,6 @@
 package;
 
-import SerectState;
+import SecretState;
 import lime.app.Application;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.util.FlxColor;
@@ -91,7 +91,7 @@ class PlayState extends FlxState
 
         if (sercet)
         {
-            FlxG.switchState(new SercetState());
+            FlxG.switchState(new SecretState());
         }
 
         if (mod)

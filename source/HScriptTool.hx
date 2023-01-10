@@ -84,9 +84,3 @@ class Script extends FlxBasic {
         parser = null;
 	}
 }
-
-class HScriptTool extends Script {
-    public override function create(){
-        super.create();
-    }
-}
