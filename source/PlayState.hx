@@ -58,8 +58,16 @@ class PlayState extends FlxState
 
         if (FlxG.sound.music == null || !FlxG.sound.music.playing) // don't restart the music if it's already playing
         {
-            // idk should we add more then one song??
-            FlxG.sound.playMusic(Paths.music('buttonClicker'), 1, true);
+            switch(FlxG.random.int(0,1)){
+                case 0:
+                FlxG.sound.playMusic(Paths.music('buttonClicker'), 1, true);
+                case 1:
+                FlxG.sound.playMusic(Paths.music('beginning'), 1, true);
+                case 2:
+                FlxG.sound.playMusic(Paths.music('peace'), 1, true);
+                default:
+                FlxG.sound.playMusic(Paths.music('buttonClicker'), 1, true);
+            }
         }
 
         FlxG.signals.preStateSwitch.add(destroy);
@@ -75,8 +83,6 @@ class PlayState extends FlxState
         coinTxt.text = "Coin: " + FlxG.save.data.coin + 
         if (FlxG.save.data.autoTap == true) 
             " | Auto Tap is Enable";
-        else if (FlxG.save.data.autoTap == false)
-            "";
         else
             "";
 
@@ -110,7 +116,7 @@ class PlayState extends FlxState
 
         if (store)
         {
-            trace('wellcome');
+            trace('welcome');
 
             FlxG.switchState(new StoreState());
 
@@ -237,7 +243,7 @@ class PlayState extends FlxState
         }
 
         if (gamepad.justPressed.START){
-            trace('wellcome');
+            trace('welcome');
 
             FlxG.switchState(new StoreState());
 
