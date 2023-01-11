@@ -1,6 +1,7 @@
-package;
+package update;
 
 import flixel.text.FlxText;
+import flixel.system.FlxAssets;
 import flixel.FlxState;
 
 class UpdateState extends FlxState{
@@ -13,7 +14,7 @@ class UpdateState extends FlxState{
         private var verCheckTxt:FlxText = new FlxText(0, FlxG.height * 0.9 + 50, FlxG.width,
         "Checking for updates...",
         16);
-        verCheckTxt.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, RIGHT);
+        verCheckTxt.setFormat(FlxAssets.FONT_DEBUGGER, 16, FlxColor.WHITE, RIGHT);
         verCheckTxt.scrollFactor.set();
         add(verCheckTxt);
 
@@ -29,6 +30,17 @@ class UpdateState extends FlxState{
             if(updateVersion != curVersion) {
                 trace('versions arent matching!');
                 mustUpdate = true;
+                update.UpdateBool.verOld = true;
+                update.UpdateBool.verLastest = false;
+                update.UpdateBool.verUnknow = false;
+                trace("must update now!");
+                FlxG.switchState(new update.AfterUpdateState());
+            }else{
+                trace("you are using lastest version");
+                update.UpdateBool.verOld = false;
+                update.UpdateBool.verLastest = true;
+                update.UpdateBool.verUnknow = false;
+                FlxG.switchState(new update.AfterUpdateState());
             }
         }
 
@@ -37,7 +49,10 @@ class UpdateState extends FlxState{
             errorOccured=true;
         }
         #else
-        FlxG.switchState(new PlayState());
+        FlxG.switchState(new update.AfterUpdateState());
+        update.UpdateBool.verOld = false;
+        update.UpdateBool.verLastest = false;
+        update.UpdateBool.verUnknow = true;
         trace('no update support available on curPlatform: ' + PlatformUtils.getPlatform());
         #end
     }

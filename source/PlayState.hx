@@ -88,7 +88,13 @@ class PlayState extends FlxState
         var devThing = FlxG.keys.justPressed.L;
         var mod = FlxG.keys.justPressed.F1;
         var sercet = FlxG.keys.justPressed.F12;
+        var update = FlxG.keys.justPressed.F11;
 
+        if (update)
+        {
+            FlxG.switchState(new update.BeforeUpdateState());
+        }
+        
         if (sercet) //found the sercet
         {
             FlxG.switchState(new SecretState());

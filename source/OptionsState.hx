@@ -15,6 +15,7 @@ class OptionsState extends FlxState {
     public final optionsCategorys:Array<String> = [
         'Controls',
         'Quality',
+        'Credits',
         'Back'
     ];
 
@@ -85,6 +86,9 @@ class OptionsState extends FlxState {
                 case "Back":
                     FlxG.switchState(new PlayState());
                     FlxG.save.flush();
+
+                case "Credits":
+                    FlxG.switchState(new credits.CreditsState());
             }
         }
 
@@ -115,6 +119,9 @@ class OptionsState extends FlxState {
                 case "Back":
                     FlxG.switchState(new PlayState());
                     FlxG.save.flush();
+
+                case "Credits":
+                    FlxG.switchState(new credits.CreditsState());    
             }
         }
 
@@ -138,6 +145,7 @@ class QualityState extends FlxState {
         'Low Quality',
         'Shit Quality',
         'FPS Cap',
+        'Hide Coin Details',
         'Back'
     ];
 
@@ -196,6 +204,13 @@ class QualityState extends FlxState {
             case "FPS Cap":
                 checkText.text = "";
 
+            case "Hide Coin Details":
+                if (FlxG.save.data.hideCoin == true){
+                    checkText.text = "ENABLE";
+                }else{
+                    checkText.text = "DISABLE";
+                }                
+
             case "Back":
                 checkText.text = "";
         }
@@ -241,6 +256,15 @@ class QualityState extends FlxState {
                         checkText.text = "DISABLE";
                     }else{
                         FlxG.save.data.shitQuality = true;
+                        checkText.text = "ENABLE";
+                    }
+
+                case "Hide Coin Details":
+                    if (FlxG.save.data.hideCoin == true){
+                        FlxG.save.data.hideCoin = false;
+                        checkText.text = "DISABLE";
+                    }else{
+                        FlxG.save.data.hideCoin = true;
                         checkText.text = "ENABLE";
                     }
 
@@ -291,6 +315,15 @@ class QualityState extends FlxState {
                         FlxG.save.data.shitQuality = true;
                         checkText.text = "ENABLE";
                     }    
+
+                case "Hide Coin Details":
+                    if (FlxG.save.data.hideCoin == true){
+                        FlxG.save.data.hideCoin = false;
+                        checkText.text = "DISABLE";
+                    }else{
+                        FlxG.save.data.hideCoin = true;
+                        checkText.text = "ENABLE";
+                    }
 
                 case "Back":
                     FlxG.switchState(new OptionsState());

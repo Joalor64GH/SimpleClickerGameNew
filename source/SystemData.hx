@@ -24,6 +24,18 @@ class SystemData
         return fileAssets;
     }
 
+    public static inline function assetsFile(path:String):String
+    {
+		var daList:Array<String> = Assets.getText(path).trim().split('\n');
+
+		for (i in 0...daList.length)
+		{
+			daList[i] = daList[i].trim();
+		}
+
+		return daList;
+	}
+
     inline public static function coin()
     {
         if (FlxG.save.data.coin == null)
