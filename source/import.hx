@@ -1,3 +1,3 @@
 import Paths;
-import flixel.FlxG;
+import credits.CreditsBool;
 using StringTools;

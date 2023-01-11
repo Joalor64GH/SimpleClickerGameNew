@@ -90,19 +90,33 @@ class Sprite_Game extends FlxSprite
 
             case "details_store":
                 frames = Paths.getSparrowAtlas('store_details');
-                animation.addByPrefix('select_1', 'select_1', 16, false);
-                animation.addByPrefix('select_2', 'select_2', 16, false);
-                animation.addByPrefix('select_3', 'select_3', 16, false);
+                if (FlxG.save.data.shitQuality){
+                    animation.addByPrefix('select_1', 'select_10020', 1, false);
+                    animation.addByPrefix('select_2', 'select_20014', 1, false);
+                    animation.addByPrefix('select_3', 'select_30012', 1, false);
+                }else{
+                    animation.addByPrefix('select_1', 'select_1', 16, false);
+                    animation.addByPrefix('select_2', 'select_2', 16, false);
+                    animation.addByPrefix('select_3', 'select_3', 16, false);
+                }
                 
                 non_idle = true;
 
             case "coin_store":
                 frames = Paths.getSparrowAtlas('store_coin');
-                animation.addByPrefix('blanks', 'blanks', 16, false);
-                animation.addByPrefix('coin 200', 'coin_200', 16, false);
-                animation.addByPrefix('coin 400', 'coin_400', 16, false);
-                animation.addByPrefix('buy!', 'coin_buy!',10, false);
-                animation.addByPrefix('dont_much_money!', 'dont_have_much_money', 16, false);
+                if (FlxG.save.data.shitQuality){
+                    animation.addByPrefix('blanks', 'blanks', 1, false);
+                    animation.addByPrefix('coin 200', 'coin_200000006', 1, false);
+                    animation.addByPrefix('coin 400', 'coin_400000006', 1, false);
+                    animation.addByPrefix('buy!', 'coin_buy!0005', 1, false);
+                    animation.addByPrefix('dont_much_money!', 'dont_have_much_money0015', 1, false);
+                }else{
+                    animation.addByPrefix('blanks', 'blanks', 16, false);
+                    animation.addByPrefix('coin 200', 'coin_200', 16, false);
+                    animation.addByPrefix('coin 400', 'coin_400', 16, false);
+                    animation.addByPrefix('buy!', 'coin_buy!',10, false);
+                    animation.addByPrefix('dont_much_money!', 'dont_have_much_money', 16, false);
+                }
                 
                 non_idle = true;
 
