@@ -35,7 +35,7 @@ class Script extends FlxBasic {
 		return interp.variables.get(name);
 	}
 
-    inline public function exists(name:String):Bool{
+    inline public override function exists(name:String):Bool{
         return interp.variables.exists(name);
     }
 
@@ -83,4 +83,23 @@ class Script extends FlxBasic {
 		interp = null;
         parser = null;
 	}
+}
+
+// don't delete this
+class HScriptTool extends Script {
+    public override function create(){
+        super.create();
+    }
+}	
+
+interface IHScriptTool{
+	public function getFolders():Dynamic;
+	public function getFiles():Dynamic;
+
+	public function loadMod(mod:Null<String>, force:Bool = false):Void;
+	public function unloadMod(mod:Null<String>):Void;
+	public function modExists(mod:Null<String>):Bool;
+	public function modsFolderExists():Bool;
+
+	public function readFile(file:Null<String>):Dynamic;
 }
