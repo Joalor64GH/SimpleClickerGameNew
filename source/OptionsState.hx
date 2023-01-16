@@ -188,28 +188,16 @@ class QualityState extends FlxState {
 
         switch(optionsCategorys[selectedOption]){
             case "Low Quality":
-                if (FlxG.save.data.lowQuality == true){
-                    checkText.text = "ENABLE";
-                }else{
-                    checkText.text = "DISABLE";
-                }
+                checkText.text = FlxG.save.data.lowQuality ? "ENABLED" : "DISABLED";
 
             case "Shit Quality":
-                if (FlxG.save.data.shitQuality == true){
-                    checkText.text = "ENABLE";
-                }else{
-                    checkText.text = "DISABLE";
-                }
+                checkText.text = FlxG.save.data.shitQuality ? "ENABLED" : "DISABLED";
 
             case "FPS Cap":
                 checkText.text = "";
 
             case "Hide Coin Details":
-                if (FlxG.save.data.hideCoin == true){
-                    checkText.text = "ENABLE";
-                }else{
-                    checkText.text = "DISABLE";
-                }                
+                checkText.text = FlxG.save.data.hideCoin ? "ENABLED" /*"YES"*/ : "DISABLED" /*"NO"*/;
 
             case "Back":
                 checkText.text = "";
@@ -242,31 +230,16 @@ class QualityState extends FlxState {
             switch(optionsCategorys[selectedOption])
             {
                 case "Low Quality":
-                    if (FlxG.save.data.lowQuality == true){
-                        FlxG.save.data.lowQuality = false;
-                        checkText.text = "DISABLE";
-                    }else{
-                        FlxG.save.data.lowQuality = true;
-                        checkText.text = "ENABLE";
-                    }
+                    FlxG.save.data.lowQuality = !FlxG.save.data.lowQuality;
+			    checkText.text = FlxG.save.data.lowQuality ? "ENABLED" : "DISABLED";
 
                 case "Shit Quality":
-                    if (FlxG.save.data.shitQuality == true){
-                        FlxG.save.data.shitQuality = false;
-                        checkText.text = "DISABLE";
-                    }else{
-                        FlxG.save.data.shitQuality = true;
-                        checkText.text = "ENABLE";
-                    }
+                    FlxG.save.data.shitQuality = !FlxG.save.data.shitQuality;
+			    checkText.text = FlxG.save.data.shitQuality ? "ENABLED" : "DISABLED";
 
                 case "Hide Coin Details":
-                    if (FlxG.save.data.hideCoin == true){
-                        FlxG.save.data.hideCoin = false;
-                        checkText.text = "DISABLE";
-                    }else{
-                        FlxG.save.data.hideCoin = true;
-                        checkText.text = "ENABLE";
-                    }
+                    FlxG.save.data.hideCoin = !FlxG.save.data.hideCoin;
+			    checkText.text = FlxG.save.data.hideCoin ? "ENABLED" /*"YES"*/ : "DISABLED" /*"NO"*/;
 
                 case "FPS Cap":
                     FlxG.switchState(new fps.FPSCAP());
@@ -307,7 +280,7 @@ class QualityState extends FlxState {
 			    checkText.text = FlxG.save.data.shitQuality ? "ENABLED" : "DISABLED";
 
                 case "Hide Coin Details":
-			    FlxG.save.data.hideCoing = !FlxG.save.data.hideCoin;
+			    FlxG.save.data.hideCoin = !FlxG.save.data.hideCoin;
 			    checkText.text = FlxG.save.data.hideCoin ? "ENABLED" /*"YES"*/ : "DISABLED" /*"NO"*/;
 
                 case "Back":
