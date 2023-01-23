@@ -6,15 +6,11 @@ import flixel.util.FlxColor;
 import flixel.system.FlxAssets;
 import flixel.tweens.FlxTween;
 import flixel.text.FlxText;
-using ModdingSystem;
 
 class ModState extends FlxState
 {
     var have_gamePad:Bool = false;
     var checkText:FlxText;
-    var modsLoadedTxt:FlxText;
-
-    var mods:Array<String> = [];
 
     override public function create()
     {
@@ -26,22 +22,6 @@ class ModState extends FlxState
 
         checkText = new FlxText(5, FlxG.height - 36, 0, "", 16);
         add(checkText);
-
-        modsLoadedTxt = new FlxText(0, 0, FlxG.width, "No Mods loaded.", 16);
-        modsLoadedTxt.screenCenter(XY);
-        add(modsLoadedTxt);
-
-        #if sys
-        for (daMod in sys.FileSystem.readDirectory(ModdingSystem.modsFolder)){
-            if (sys.FileSystem.isDirectory('${ModdingSystem.modsFolder}$daMod')){
-                mods.push(daMod);
-            }
-
-            if (mods.length > 0){
-                modsLoadedTxt = 'Mods loaded: ${ModdingSystem.modsFolder}$daMod';
-            }
-        }
-        #end
     }
 
     override public function update(elapsed:Float)
