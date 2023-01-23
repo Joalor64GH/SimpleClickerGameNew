@@ -134,13 +134,8 @@ class PlayState extends FlxState
             FlxG.save.flush();
         }
 
-        if (press || press_alt || FlxG.mouse.overlaps(sprite) && FlxG.mouse.justPressed || autoTap() && FlxG.elapsed % 2 == 0)
-        {
-            click();
-        }
-
         function click(){
-            new FlxTimer().start(0.01, ()->{
+            new FlxTimer().start(0.01, function(timer){
                 sprite.animation.play('tap');
 
                 if (FlxG.save.data.x2 == true)
@@ -150,6 +145,11 @@ class PlayState extends FlxState
     
                 FlxG.save.flush();
             });
+        }
+
+        if (press || press_alt || FlxG.mouse.overlaps(sprite) && FlxG.mouse.justPressed || autoTap() && FlxG.elapsed % 2 == 0)
+        {
+            click();
         }
 
         if (reset){

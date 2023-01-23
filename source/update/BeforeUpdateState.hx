@@ -1,7 +1,8 @@
 package update;
 
-import flixel.text.*;
+import flixel.text.FlxText;
 import flixel.*;
+import flixel.util.FlxColor;
 
 class BeforeUpdateState extends FlxState
 {

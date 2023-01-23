@@ -5,6 +5,10 @@ import flixel.FlxState;
 import flixel.FlxSubState;
 import flixel.FlxSprite;
 import flixel.util.FlxColor;
+import flixel.text.FlxText;
+import flixel.group.FlxGroup.FlxTypedGroup;
+
+using flixel.util.FlxSpriteUtil;
 
 class CreditsState extends FlxState
 {
@@ -20,7 +24,7 @@ class CreditsState extends FlxState
 	{
 		super.create();
 
-        creditsList = CoolUtil.assetsFile(Paths.txt("credits"));
+        creditsList = SystemData.assetsFile(Paths.txt("credits"));
 
 		grpOptionsTexts = new FlxTypedGroup<FlxText>();
 		add(grpOptionsTexts);
@@ -48,10 +52,10 @@ class CreditsState extends FlxState
         var down = FlxG.keys.justPressed.DOWN;
         var enter = FlxG.keys.justPressed.ENTER;
 
-		if (controls.UP_P)
+		if (up)
 			curSelected -= 1;
 
-		if (controls.DOWN_P)
+		if (down)
 			curSelected += 1;
 
 		if (curSelected < 0)
@@ -68,12 +72,12 @@ class CreditsState extends FlxState
 				txt.color = FlxColor.YELLOW;
 		});
 
-		if (controls.ACCEPT)
+		if (enter)
 		{
 			switch (creditsList[curSelected])
 			{
 				case "Huy1234TH":
-					Huy1234thSubState();
+					openSubState(new Huy1234thSubState());
 					CreditsBool.huy1234th = true;
 
 				case "Back":
@@ -97,14 +101,13 @@ class Huy1234thSubState extends FlxSubState
 		text.screenCenter();
 
 		var bg:FlxSprite = new FlxSprite();
-		bg.makeGraphic(Std.int(text.width + 16), Std.int(text.height + button.height + 36),
+		bg.makeGraphic(Std.int(text.width + 16), Std.int(text.height + 30 + 36),
 			FlxColor.WHITE);
 		FlxSpriteUtil.drawRect(bg, 1, 1, bg.width - 2, bg.height - 2, FlxColor.YELLOW);
 		bg.screenCenter();
 
 		add(bg);
 		add(text);
-		add(button);
 
 		bgColor = 0;
 	}

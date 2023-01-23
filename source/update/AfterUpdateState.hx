@@ -2,9 +2,11 @@ package update;
 
 import flixel.text.*;
 import flixel.*;
-import update.UpdateBool;
+import update.UpdateState;
+import flixel.util.FlxColor;
+import flixel.text.FlxText;
 
-class BeforeUpdateState extends FlxState
+class AfterUpdateState extends FlxState
 {
     var text:FlxText;
 
@@ -25,11 +27,11 @@ class BeforeUpdateState extends FlxState
 	{
 		super.update(elapsed);
     
-        if (UpdateBool.verOld == true){
+        if (UpdateState.verOld == true){
             text.text = "USING OLD VERSION!!\nPress Enter to go back";
-        }else if (UpdateBool.verLastest == true){
+        }else if (UpdateState.verLastest == true){
             text.text = "USING LASTEST VERSION\nPress Enter to go back";
-        }else if (UpdateBool.verUnknow == true){
+        }else if (UpdateState.verUnknow == true){
             text.text = "Uh...\nPlease check your system again\nBecause we dont know what your os using!\nPress Enter to go back";
         }
 

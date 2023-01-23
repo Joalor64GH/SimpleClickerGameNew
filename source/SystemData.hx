@@ -24,7 +24,7 @@ class SystemData
         return fileAssets;
     }
 
-    public static inline function assetsFile(path:String):String
+    public static inline function assetsFile(path:String):Array<String>
     {
 		var daList:Array<String> = Assets.getText(path).trim().split('\n');
 
