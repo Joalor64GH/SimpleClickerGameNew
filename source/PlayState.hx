@@ -11,6 +11,7 @@ import flixel.text.FlxText;
 import flixel.*;
 import flixel.ui.*;
 import flixel.input.mouse.FlxMouse;
+import flixel.util.FlxTimer;
 
 class PlayState extends FlxState
 {
@@ -135,14 +136,20 @@ class PlayState extends FlxState
 
         if (press || press_alt || FlxG.mouse.overlaps(sprite) && FlxG.mouse.justPressed || autoTap() && FlxG.elapsed % 2 == 0)
         {
-            sprite.animation.play('tap');
+            click();
+        }
 
-            if (FlxG.save.data.x2 == true)
-                FlxG.save.data.coin += 2;
-            else
-                FlxG.save.data.coin++;
+        function click(){
+            new FlxTimer().start(0.01, ()->{
+                sprite.animation.play('tap');
 
-            FlxG.save.flush();
+                if (FlxG.save.data.x2 == true)
+                    FlxG.save.data.coin += 2;
+                else
+                    FlxG.save.data.coin++;
+    
+                FlxG.save.flush();
+            });
         }
 
         if (reset){

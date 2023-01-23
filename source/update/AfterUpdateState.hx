@@ -25,11 +25,11 @@ class BeforeUpdateState extends FlxState
 	{
 		super.update(elapsed);
     
-        if (UpdateBool.verOld == true || UpdateBool.verLastest == false || UpdateBool.verUnknow == false){
+        if (UpdateBool.verOld == true){
             text.text = "USING OLD VERSION!!\nPress Enter to go back";
-        }else if (UpdateBool.verOld == false || UpdateBool.verLastest == true || UpdateBool.verUnknow == false){
+        }else if (UpdateBool.verLastest == true){
             text.text = "USING LASTEST VERSION\nPress Enter to go back";
-        }else if (UpdateBool.verOld == false || UpdateBool.verLastest == true || UpdateBool.verUnknow == false){
+        }else if (UpdateBool.verUnknow == true){
             text.text = "Uh...\nPlease check your system again\nBecause we dont know what your os using!\nPress Enter to go back";
         }
 

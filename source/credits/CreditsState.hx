@@ -1,10 +1,10 @@
-package;
+package credits;
 
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.FlxSubState;
 import flixel.FlxSprite;
-import flixel.utils.FlxColor;
+import flixel.util.FlxColor;
 
 class CreditsState extends FlxState
 {
