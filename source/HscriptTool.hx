@@ -3,6 +3,11 @@ package;
 import hscript.*;
 import openfl.Lib;
 
+#if sys
+import sys.io.File;
+import sys.FileSystem;
+#end
+
 class HscriptTool extends flixel.FlxBasic {
 	public var locals(get, set):Map<String, {r:Dynamic}>;
 

@@ -14,6 +14,11 @@ import flixel.input.mouse.FlxMouse;
 import flixel.util.FlxTimer;
 import HscriptTool;
 
+#if sys
+import sys.io.File;
+import sys.FileSystem;
+#end
+
 class PlayState extends FlxState
 {
     public static var gamepad:FlxGamepad;
@@ -310,7 +315,7 @@ class PlayState extends FlxState
         }
 	}
 
-    override public function destory(){
+    override public function destroy(){
         callOnScripts('destroy', []);
 		super.destroy();
         sprite = null;
@@ -331,7 +336,7 @@ class PlayState extends FlxState
 
 		for (i in 0...scriptArray.length) {
 			final call:Dynamic = scriptArray[i].executeFunc(funcName, args);
-			final bool:Bool = call == Hscript.Function_Continue;
+			final bool:Bool = call == HscriptTool.Function_Continue;
 			if (!bool && call != null)
 				value = call;
 		}
