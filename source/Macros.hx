@@ -1,6 +1,5 @@
 package;
 
-#if macro
 class Macros
 {
 	// Shorthand for retrieving compiler flag values.
@@ -28,4 +27,3 @@ class Macros
 		return macro $v{haxe.macro.Context.getDefines()};
 	}
 }
-#end

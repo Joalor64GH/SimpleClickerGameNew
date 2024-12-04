@@ -79,8 +79,8 @@ class HscriptTool extends flixel.FlxBasic {
 
 		setVariable('importScript', function(source:String) {
 			var name:String = StringTools.replace(source, '.', '/');
-			var script:Hscript = new Hscript('$name.hxs', false);
-			script.execute('$name.hxs', false);
+			var script:Hscript = new HscriptTool('$name.hx', false);
+			script.execute('$name.hx', false);
 			return script.getAll();
 		});
 
