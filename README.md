@@ -1,7 +1,7 @@
 # Simple Clicker Game
 
 ## Size
-![Repo size](https://img.shields.io/github/repo-size/Hoovy-Team/Simple-Clicker-Game)
+![Repo size](https://img.shields.io/github/repo-size/Joalor64GH/SimpleClickerGameNew)
 
 ## About
 A game just clicker the sprite

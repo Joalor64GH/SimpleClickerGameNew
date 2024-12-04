@@ -23,16 +23,9 @@ class Macros
 	}
 
 	// Shorthand for retrieving a map of all defined compiler flags.
-	static macro function getDefines():haxe.macro.Expr
+	public static macro function getDefines():haxe.macro.Expr
 	{
-		var defines:Map<String, String> = haxe.macro.Context.getDefines();
-		// Construct map syntax so we can return it as an expression
-		var map:Array<haxe.macro.Expr> = [];
-		for (key in defines.keys())
-		{
-			map.push(macro $v{key} => $v{Std.string(defines.get(key))});
-		}
-		return macro $a{map};
+		return macro $v{haxe.macro.Context.getDefines()};
 	}
 }
 #end

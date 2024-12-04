@@ -27,7 +27,7 @@ class UpdateState extends FlxState
         add(verCheckTxt);
 
         #if desktop
-        var http = new haxe.Http("https://raw.githubusercontent.com/Hoovy-Team/Simple-Clicker-Game/main/updateVersion.txt");
+        var http = new haxe.Http("https://raw.githubusercontent.com/Joalor64GH/SimpleClickerGameNew/main/updateVersion.txt");
 
         http.onData = function(e)
         {

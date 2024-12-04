@@ -12,6 +12,7 @@ import flixel.*;
 import flixel.ui.*;
 import flixel.input.mouse.FlxMouse;
 import flixel.util.FlxTimer;
+import HscriptTool;
 
 class PlayState extends FlxState
 {
@@ -20,18 +21,43 @@ class PlayState extends FlxState
     public static var sprite:Sprite_Game;
     public static var sprite_tween:FlxTween;
     public static var coinTxt:FlxText;
-    var checkText:FlxText;
 
+    public var scriptArray:Array<HscriptTool> = [];
+
+    var checkText:FlxText;
     var bg:FlxSprite;
 
     override public function create()
     {
         super.create();
 
+        ModHandler.reload();
+
         bg = new FlxSprite();
         bg.makeGraphic(800, 600, FlxColor.CYAN);
         bg.screenCenter();
         add(bg);
+
+        var foldersToCheck:Array<String> = [Paths.file('data/')];
+		#if FUTURE_POLYMOD
+		for (mod in ModHandler.getModIDs())
+			foldersToCheck.push('mods/' + mod + '/data/');
+		#end
+		for (folder in foldersToCheck) {
+			if (FileSystem.exists(folder) && FileSystem.isDirectory(folder)) {
+				for (file in FileSystem.readDirectory(folder)) {
+					if (file.endsWith('.hx')) {
+						scriptArray.push(new HscriptTool(folder + file));
+					}
+				}
+			}
+		}
+
+        for (script in scriptArray) {
+			script?.setVariable('addScript', function(path:String) {
+				scriptArray.push(new HscriptTool('$path.hx'));
+			});
+		}
 
         SystemData.coin(); //when first playing, number of coin are null
         SystemData.saveData();
@@ -71,11 +97,15 @@ class PlayState extends FlxState
             }
         }
 
+        callOnScripts('createPost', []);
+
         FlxG.signals.preStateSwitch.add(destroy);
     }
 
     override public function update(elapsed:Float)
     {
+        callOnScripts('update', [elapsed]);
+
         super.update(elapsed);
 
         FlxTween.color(bg, 1, 0x006EFF, 0x550404,
@@ -201,6 +231,8 @@ class PlayState extends FlxState
             Application.current.window.title = "Simple Clicker Game - Controller detected!";
 			getControls(gamepad);
 		}
+
+        callOnScripts('updatePost', [elapsed]);
     }
 
     inline function autoTap(enabled:Bool = false):Bool
@@ -278,13 +310,32 @@ class PlayState extends FlxState
         }
 	}
 
-    public function destory(){
+    override public function destory(){
+        callOnScripts('destroy', []);
+		super.destroy();
         sprite = null;
         coinTxt = null;
         checkText = null;
         sprite_tween = null;
         // gamepad = null;
 
+        for (script in scriptArray)
+			script?.destroy();
+		scriptArray = [];
+
         FlxG.signals.preStateSwitch.remove(destroy);
     }
+
+	private function callOnScripts(funcName:String, args:Array<Dynamic>):Dynamic {
+		var value:Dynamic = HscriptTool.Function_Continue;
+
+		for (i in 0...scriptArray.length) {
+			final call:Dynamic = scriptArray[i].executeFunc(funcName, args);
+			final bool:Bool = call == Hscript.Function_Continue;
+			if (!bool && call != null)
+				value = call;
+		}
+
+		return value;
+	}
 }
